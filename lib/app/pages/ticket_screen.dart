@@ -15,7 +15,7 @@ class _TicketScreenState extends State<TicketScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tickets"),
+        title: Text("Ticketss"),
         centerTitle: true,
         backgroundColor: DarkThemeColor.primary,
       ),
