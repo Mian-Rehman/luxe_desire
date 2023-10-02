@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:luxe_desires/app/modules/eventScreen/views/event_screen_view.dart';
-import 'package:luxe_desires/app/modules/home/views/widgets/category_widget.dart';
+import 'package:luxe_desires/app/modules/guestlist_page/views/guestlist_view.dart';
+import 'package:luxe_desires/app/modules/menu_screen/menu_screen.dart';
 import 'package:luxe_desires/app/pages/reward_screen.dart';
-
+import 'package:luxe_desires/app/routes/app_pages.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/theme_controller.dart';
+import '../../../userprofile/views/userprofile_view.dart';
 
 class MenuArea extends StatelessWidget {
   const MenuArea({super.key});
@@ -18,24 +20,7 @@ class MenuArea extends StatelessWidget {
     final isDark = themeController.isDark.value;
     return Column(
       children: [
-        const Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            CategoryWidget(
-              title: 'Food Menu',
-              icon: Icons.restaurant_menu,
-            ),
-            CategoryWidget(
-              title: 'Seesha Ordering',
-              icon: Icons.smoking_rooms,
-            ),
-
-          ],
-        ),
-
-        SizedBox(height: 10,),
-         Row(
+        Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -44,19 +29,20 @@ class MenuArea extends StatelessWidget {
               focusColor: Colors.transparent,
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
-              onTap: (){
-              Get.to(EventScreenView());
+              onTap: () {
+                Get.to(() => const EventScreenView());
               },
-              child:Container(
+              child: Container(
                 width: 0.45.sw,
-                height: 150.h,
+                height: 155.h,
                 decoration: BoxDecoration(
                   color: isDark ? Colors.black26 : DarkThemeColor.primary,
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(10),
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.w, 20.h, 10.w, 20.h),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(10.w, 20.h, 10.w, 20.h),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -70,14 +56,15 @@ class MenuArea extends StatelessWidget {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 15.h, 0, 0),
                         child: Text(
-                          "Event",
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontFamily: 'Readex Pro',
-                            color: isDark
-                                ? DarkThemeColor.primary
-                                : DarkThemeColor.alternate,
-                            fontSize: 18,
-                          ),
+                          "Events",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontFamily: 'Readex Pro',
+                                    color: isDark
+                                        ? DarkThemeColor.primary
+                                        : DarkThemeColor.alternate,
+                                    fontSize: 18,
+                                  ),
                         ),
                       ),
                     ],
@@ -90,24 +77,25 @@ class MenuArea extends StatelessWidget {
               focusColor: Colors.transparent,
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
-              onTap: (){
-                Get.to(RewardScreen());
+              onTap: () {
+                Get.toNamed(Routes.MUSICLIST);
               },
-              child:Container(
+              child: Container(
                 width: 0.45.sw,
-                height: 150.h,
+                height: 155.h,
                 decoration: BoxDecoration(
-                  color: isDark ? Colors.black26: DarkThemeColor.primary,
-                  borderRadius: BorderRadius.circular(5),
+                  color: isDark ? Colors.black26 : DarkThemeColor.primary,
+                  borderRadius: BorderRadius.circular(10),
                   shape: BoxShape.rectangle,
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.w, 20.h, 10.w, 20.h),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(10.w, 20.h, 10.w, 20.h),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Icon(
-                        Icons.currency_exchange,
+                        Icons.music_note_outlined,
                         color: isDark
                             ? DarkThemeColor.primary
                             : DarkThemeColor.alternate,
@@ -116,14 +104,15 @@ class MenuArea extends StatelessWidget {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 15.h, 0, 0),
                         child: Text(
-                          "Rewards",
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontFamily: 'Readex Pro',
-                            color: isDark
-                                ? DarkThemeColor.primary
-                                : DarkThemeColor.alternate,
-                            fontSize: 18,
-                          ),
+                          "Music",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontFamily: 'Readex Pro',
+                                    color: isDark
+                                        ? DarkThemeColor.primary
+                                        : DarkThemeColor.alternate,
+                                    fontSize: 18,
+                                  ),
                         ),
                       ),
                     ],
@@ -131,7 +120,107 @@ class MenuArea extends StatelessWidget {
                 ),
               ),
             ),
-
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () => Get.to(() => const GuestlistScreen()),
+              child: Container(
+                width: 0.45.sw,
+                height: 155.h,
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.black26 : DarkThemeColor.primary,
+                  borderRadius: BorderRadius.circular(10),
+                  shape: BoxShape.rectangle,
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(10.w, 20.h, 10.w, 20.h),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: isDark
+                            ? DarkThemeColor.primary
+                            : DarkThemeColor.alternate,
+                        size: 70,
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 15.h, 0, 0),
+                        child: Text(
+                          "Guest Lists",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontFamily: 'Readex Pro',
+                                    color: isDark
+                                        ? DarkThemeColor.primary
+                                        : DarkThemeColor.alternate,
+                                    fontSize: 18,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () => Get.to(MenuScreen()),
+              child: Container(
+                width: 0.45.sw,
+                height: 155.h,
+                decoration: BoxDecoration(
+                  color: isDark ? Colors.black26 : DarkThemeColor.primary,
+                  borderRadius: BorderRadius.circular(10),
+                  shape: BoxShape.rectangle,
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(10.w, 20.h, 10.w, 20.h),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Icon(
+                        Icons.menu,
+                        color: isDark
+                            ? DarkThemeColor.primary
+                            : DarkThemeColor.alternate,
+                        size: 70,
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 15.h, 0, 0),
+                        child: Text(
+                          "Menu",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontFamily: 'Readex Pro',
+                                    color: isDark
+                                        ? DarkThemeColor.primary
+                                        : DarkThemeColor.alternate,
+                                    fontSize: 18,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ],

@@ -8,6 +8,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const ONBOARDING = _Paths.ONBOARDING;
   static const AUTHPAGE = _Paths.AUTHPAGE;
+  static const REGISTERPAGE = _Paths.REGISTERPAGE;
   static const FORGOTPASSWORD = _Paths.FORGOTPASSWORD;
   static const EVENT_SCREEN = _Paths.EVENT_SCREEN;
   static const MAINDASHBOARD = _Paths.MAINDASHBOARD;
@@ -16,6 +17,8 @@ abstract class Routes {
   static const EDITPROFILE = _Paths.EDITPROFILE;
   static const USERS = _Paths.USERS;
   static const SHOP = _Paths.SHOP;
+  static const otpScreen = _Paths.otpScreen;
+  static const BottomNAV = _Paths.BottomNAV;
   static const JOINTEAM = _Paths.JOINTEAM;
   static const MUSIC_PLAYER = _Paths.MUSIC_PLAYER;
   static const ADD_MUSIC = _Paths.ADD_MUSIC;
@@ -26,9 +29,11 @@ abstract class Routes {
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
+  static const BottomNAV = '/navbar';
   static const ONBOARDING = '/onboarding';
   static const AUTHPAGE = '/authpage';
   static const FORGOTPASSWORD = '/forgotpassword';
+  static const REGISTERPAGE = '/registerPage';
   static const EVENT_SCREEN = '/event-screen';
   static const MAINDASHBOARD = '/maindashboard';
   static const MUSICLIST = '/musiclist';
@@ -36,6 +41,7 @@ abstract class _Paths {
   static const EDITPROFILE = '/editprofile';
   static const USERS = '/users';
   static const SHOP = '/shop';
+  static const otpScreen = '/OTP';
   static const JOINTEAM = '/jointeam';
   static const MUSIC_PLAYER = '/music-player';
   static const ADD_MUSIC = '/add-music';

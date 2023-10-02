@@ -7,7 +7,7 @@ import 'package:luxe_desires/app/modules/authpage/views/tabs/login_tab.dart';
 
 import '../controllers/authpage_controller.dart';
 
-class AuthpageView extends GetView<AuthpageController> {
+class AuthpageView extends GetView<AuthController> {
   const AuthpageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class AuthpageView extends GetView<AuthpageController> {
                       ),
                     ],
                   ),
-                  LoginTab()
+                  const LoginTab()
                   // Expanded(
                   //   child: DefaultTabController(
                   //     length: 2,

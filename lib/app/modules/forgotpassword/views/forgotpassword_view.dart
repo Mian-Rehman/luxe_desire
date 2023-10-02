@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/theme_controller.dart';
+import 'package:luxe_desires/app/services/auth_services.dart';
 import 'package:luxe_desires/app/widgets/input_feild.dart';
 import 'package:luxe_desires/app/widgets/submit_button.dart';
-
 import '../controllers/forgotpassword_controller.dart';
 
 class ForgotpasswordView extends GetView<ForgotpasswordController> {
@@ -52,7 +51,7 @@ class ForgotpasswordView extends GetView<ForgotpasswordController> {
               },
               bgColor: !isDark
                   ? LightThemeColor.secondaryBackground
-                  : DarkThemeColor.secondaryBackground,
+                  : DarkThemeColor.primaryText,
               inputController: controller.emailAddressController,
             ),
             SizedBox(
@@ -60,9 +59,8 @@ class ForgotpasswordView extends GetView<ForgotpasswordController> {
             ),
             SubmitButton(
               title: 'Send Link',
-              onTap: () {
-                Get.back();
-              },
+              onTap: () => AuthServices().forgetPasscode(
+                  email: controller.emailAddressController.text),
               width: 270.w,
               height: 50.h,
               textColor: !isDark

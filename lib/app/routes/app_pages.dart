@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-
+import 'package:luxe_desires/app/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:luxe_desires/app/modules/authpage/views/tabs/signup_tab.dart';
 import '../modules/add_music/bindings/add_music_binding.dart';
 import '../modules/add_music/views/add_music_view.dart';
 import '../modules/authpage/bindings/authpage_binding.dart';
@@ -41,13 +42,18 @@ class AppPages {
   AppPages._();
 
   static const INITIAL = Routes.ONBOARDING;
+  static const BottomNAV = Routes.BottomNAV;
 
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () =>  HomeView(),
+      page: () => const HomeView(),
       binding: HomeBinding(),
     ),
+    GetPage(
+        name: _Paths.REGISTERPAGE,
+        page: () => const SignUpTab(),
+        binding: AuthpageBinding()),
     GetPage(
       name: _Paths.ONBOARDING,
       page: () => const OnboardingView(),
@@ -65,8 +71,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.EVENT_SCREEN,
-      page: () =>  EventScreenView(),
+      page: () => const EventScreenView(),
       binding: EventScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.BottomNAV,
+      page: () => const BottomNavBar(),
     ),
     GetPage(
       name: _Paths.MAINDASHBOARD,

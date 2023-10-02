@@ -5,6 +5,8 @@ import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/theme_controller.dart';
 import 'package:luxe_desires/app/routes/app_pages.dart';
 
+import '../../../eventScreen/views/event_screen_view.dart';
+
 class CategoryWidget extends StatelessWidget {
   final String title;
   final IconData icon;
@@ -22,6 +24,7 @@ class CategoryWidget extends StatelessWidget {
       onTap: () {
         Get.toNamed(Routes.ORDER,
             arguments: title == 'Food Menu' ? true : false);
+        Get.to(EventScreenView());
       },
       child: Container(
         width: 0.45.sw,

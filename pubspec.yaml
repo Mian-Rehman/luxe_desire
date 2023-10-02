@@ -12,6 +12,8 @@ dependencies:
   google_fonts: ^5.1.0
   flutter_bounce: ^1.1.0
   flutter_svg: ^2.0.7
+  image_picker: ^1.0.4
+  audioplayers: ^5.1.0
   extended_image: ^8.0.2
   flutter:
     sdk: flutter
@@ -25,6 +27,11 @@ dependencies:
   video_player: ^2.7.0
   flutter_rating_bar: ^4.0.1
   qr_flutter: ^4.1.0
+  firebase_core: ^2.16.0
+  firebase_auth: ^4.10.0
+  cloud_firestore: ^4.9.2
+  firebase_storage: ^11.2.7
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0

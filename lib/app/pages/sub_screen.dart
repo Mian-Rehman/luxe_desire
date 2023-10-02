@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -121,6 +120,7 @@ class _SubsScreenState extends State<SubsScreen> {
              child: Text("Description",style: TextStyle(fontSize: 21,color: Colors.white,fontWeight: FontWeight.bold),)),
 
          SizedBox(height: 20,),
+         
          Container(
              margin: EdgeInsets.only(left: 5),
              child: Text("Bottle service by reservation only",style: TextStyle(fontSize: 14,color: Colors.white),)),

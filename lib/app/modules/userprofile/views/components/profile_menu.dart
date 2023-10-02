@@ -17,107 +17,104 @@ class ProfileMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
     final isDark = themeController.isDark.value;
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(4.w, 12.h, 0, 0.h),
-            child: Text(
-              'Features',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(4.w, 12.h, 0, 0.h),
+          child: Text(
+            'Features',
+            style: Theme.of(context).textTheme.labelMedium,
           ),
-          ProfileMenuTile(
-            title: 'Rewards',
+        ),
+        ProfileMenuTile(
+          title: 'Rewards',
+          onTap: () {
+            Get.to(const RewardScreen());
+          },
+        ),
+        ProfileMenuTile(
+          title: 'Tickets',
+          onTap: () {
+            Get.to(const TicketScreen());
+          },
+        ),
+        ProfileMenuTile(
+          title: 'Subscription',
+          onTap: () {
+            Get.to(const SubsScreen());
+          },
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(4.w, 12.h, 0, 0.h),
+          child: Text(
+            'Account Settings',
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+        ),
+        ProfileMenuTile(
+          title: 'User',
+          onTap: () {
+            Get.toNamed(Routes.USERS);
+          },
+        ),
+        ProfileMenuTile(
+          title: 'Join our Team',
+          onTap: () {
+            Get.toNamed(Routes.JOINTEAM);
+          },
+        ),
+        ProfileMenuTile(
+          title: 'Music List',
+          onTap: () {
+            Get.toNamed(Routes.MUSICLIST, arguments: true);
+          },
+        ),
+        ProfileMenuTile(
+          title: 'Shop',
+          onTap: () {
+            Get.toNamed(Routes.SHOP);
+          },
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(4.w, 12.h, 0, 0.h),
+          child: Text(
+            'Account Settings',
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+        ),
+        ProfileMenuTile(
+          title: 'Forget Password',
+          onTap: () {
+            Get.toNamed(Routes.FORGOTPASSWORD);
+          },
+        ),
+        ProfileMenuTile(
+          title: 'Edit Profile',
+          onTap: () {
+            Get.toNamed(Routes.EDITPROFILE);
+          },
+        ),
+        SizedBox(
+          height: 20.h,
+        ),
+        Center(
+          child: SubmitButton(
+            title: 'logout',
             onTap: () {
-              Get.to(RewardScreen());
+              Get.offAllNamed(Routes.AUTHPAGE);
             },
+            width: 90.w,
+            height: 50.w,
+            bgColor: !isDark
+                ? LightThemeColor.secondaryBackground
+                : DarkThemeColor.secondaryBackground,
           ),
-          ProfileMenuTile(
-            title: 'Tickets',
-            onTap: () {
-              Get.to(TicketScreen());
-            },
-          ),
-          ProfileMenuTile(
-            title: 'Subscription',
-            onTap: () {
-              Get.to(SubsScreen());
-            },
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(4.w, 12.h, 0, 0.h),
-            child: Text(
-              'Account Settings',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-          ),
-          ProfileMenuTile(
-            title: 'User',
-            onTap: () {
-              Get.toNamed(Routes.USERS);
-            },
-          ),
-          ProfileMenuTile(
-            title: 'Join our Team',
-            onTap: () {
-              Get.toNamed(Routes.JOINTEAM);
-            },
-          ),
-          ProfileMenuTile(
-            title: 'Music List',
-            onTap: () {
-              Get.toNamed(Routes.MUSICLIST, arguments: true);
-            },
-          ),
-          ProfileMenuTile(
-            title: 'Shop',
-            onTap: () {
-              Get.toNamed(Routes.SHOP);
-            },
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(4.w, 12.h, 0, 0.h),
-            child: Text(
-              'Account Settings',
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-          ),
-          ProfileMenuTile(
-            title: 'Forget Password',
-            onTap: () {
-              Get.toNamed(Routes.FORGOTPASSWORD);
-            },
-          ),
-          ProfileMenuTile(
-            title: 'Edit Profile',
-            onTap: () {
-              Get.toNamed(Routes.EDITPROFILE);
-            },
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          Center(
-            child: SubmitButton(
-              title: 'logout',
-              onTap: () {
-                Get.offAllNamed(Routes.AUTHPAGE);
-              },
-              width: 90.w,
-              height: 50.w,
-              bgColor: !isDark
-                  ? LightThemeColor.secondaryBackground
-                  : DarkThemeColor.secondaryBackground,
-            ),
-          ),
-          SizedBox(
-            height: 30.h,
-          ),
-        ],
-      ),
+        ),
+        SizedBox(
+          height: 30.h,
+        ),
+      ],
     );
   }
 }

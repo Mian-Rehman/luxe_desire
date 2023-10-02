@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AuthpageController extends GetxController {
+class AuthController extends GetxController {
   // signin controllers
-  final emailAddressLoginController = TextEditingController();
   final passwordLoginController = TextEditingController();
   final passwordLoginVisibility = false.obs;
   // signup controllers
@@ -13,14 +12,26 @@ class AuthpageController extends GetxController {
   final passwordController = TextEditingController();
   final passwordVisibility = false.obs;
   final passwordConfirmController = TextEditingController();
+  final otpController = TextEditingController();
   final passwordConfirmVisibility = false.obs;
+  var loading = false.obs;
+  var loginLoad = false.obs;
 
+  loader() async {
+    loading.value = true;
+    await Future.delayed(const Duration(seconds: 5));
+    loading.value = false;
+  }
 
+  loginLoader() async {
+    loginLoad.value = true;
+    await Future.delayed(const Duration(seconds: 5));
+    loginLoad.value = false;
+  }
 
   @override
   void onClose() {
     super.onClose();
-    emailAddressLoginController.dispose();
     passwordLoginController.dispose();
     nameController.dispose();
     emailAddressController.dispose();

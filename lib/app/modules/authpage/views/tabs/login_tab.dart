@@ -3,17 +3,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
+import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/modules/authpage/controllers/authpage_controller.dart';
+import 'package:luxe_desires/app/modules/authpage/views/tabs/signup_tab.dart';
 import 'package:luxe_desires/app/routes/app_pages.dart';
+import 'package:luxe_desires/app/widgets/container_widget.dart';
 import 'package:luxe_desires/app/widgets/input_feild.dart';
 import 'package:luxe_desires/app/widgets/submit_button.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../../../../constants/theme_controller.dart';
+import '../../../../services/services.dart';
 
-class LoginTab extends GetView<AuthpageController> {
+class LoginTab extends StatelessWidget {
   const LoginTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(AuthController());
+    final ThemeController themeController = Get.find();
+    final isDark = themeController.isDark.value;
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(44.w, 0, 44.w, 0),
       child: Column(
@@ -33,12 +40,13 @@ class LoginTab extends GetView<AuthpageController> {
           ),
           InputField(
             labelText: 'Email Address',
+            textInputAction: TextInputAction.next,
             validatior: (value) {
               if (value.toString().isEmpty) {
                 return '';
               }
             },
-            inputController: controller.emailAddressLoginController,
+            inputController: controller.emailAddressController,
           ),
           SizedBox(
             height: 12.h,
@@ -65,16 +73,48 @@ class LoginTab extends GetView<AuthpageController> {
           SizedBox(
             height: 24.h,
           ),
-          SubmitButton(
-            title: 'Login',
-            onTap: () {
-              Get.offAllNamed(Routes.MAINDASHBOARD);
-            },
-            width: 230.w,
-            height: 50.h,
-            textColor: DarkThemeColor.primaryText,
-            bgColor: DarkThemeColor.primary,
-          ),
+          Obx(() => controller.loginLoad.value == false
+              ? SubmitButton(
+                  title: 'Login',
+                  onTap: () {
+                    controller.loginLoader();
+                    AuthServices().login(
+                        email: controller.emailAddressController.text,
+                        password: controller.passwordLoginController.text);
+                  },
+                  width: 230.w,
+                  height: 50.h,
+                  textColor: DarkThemeColor.primaryText,
+                  bgColor: DarkThemeColor.primary,
+                )
+              : ContainerWidget(
+                  bgColor: DarkThemeColor.primary,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Loading...',
+                          style: GoogleFonts.readexPro(
+                            color: !isDark
+                                ? LightThemeColor.primaryText
+                                : DarkThemeColor.primaryText,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ))),
           SizedBox(
             height: 20.h,
           ),
@@ -88,7 +128,7 @@ class LoginTab extends GetView<AuthpageController> {
             textColor: DarkThemeColor.primaryText,
           ),
           SizedBox(
-            height: 40.h,
+            height: 20.h,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -106,17 +146,25 @@ class LoginTab extends GetView<AuthpageController> {
                 title: 'SignUp',
                 textColor: DarkThemeColor.primary,
                 onTap: () async {
-                  final url =
-                      Uri.parse('https://www.luxedesiresent.com/sign-up');
-                  if (!await launchUrl(url,
-                      mode: LaunchMode.externalApplication)) {
-                    throw Exception('Could not launch $url');
-                  }
+                  // Get.toNamed(Routes.REGISTERPAGE);
+                  Get.to(() => const SignUpTab());
                 },
-                width: 70.w,
+                width: 73.w,
                 height: 40.h,
               ),
             ],
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          SubmitButton(
+            title: 'Continue as a Guest',
+            onTap: () {
+              Get.offAllNamed(Routes.BottomNAV);
+            },
+            width: size.width.w,
+            height: 40.h,
+            textColor: DarkThemeColor.primary,
           ),
         ],
       ),

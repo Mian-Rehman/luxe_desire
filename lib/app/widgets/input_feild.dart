@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 
 class InputField extends StatelessWidget {
@@ -65,12 +66,12 @@ class InputField extends StatelessWidget {
         textInputAction: textInputAction,
         obscureText: secure,
         readOnly: readOnly,
+        cursorColor: DarkThemeColor.primary,
         keyboardType: type,
         controller: inputController,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: (value) {
           var error = validatior(value);
-
           return error;
         },
         textAlign: TextAlign.start,
@@ -78,8 +79,9 @@ class InputField extends StatelessWidget {
               color: const Color(0xFF0F1113),
             ),
         decoration: InputDecoration(
+          floatingLabelAlignment: FloatingLabelAlignment.start,
           contentPadding: EdgeInsets.symmetric(
-              horizontal: 20.w, vertical: !isContentPadding ? 8.h : 20.h),
+              horizontal: 10.w, vertical: !isContentPadding ? 5.h : 10.h),
           suffixIcon: suffix != null
               ? Bounce(
                   duration: const Duration(milliseconds: 150),
@@ -90,15 +92,24 @@ class InputField extends StatelessWidget {
                   ),
                 )
               : null,
+          prefixIcon: prefix != null
+              ? Icon(
+                  prefix,
+                  color: iconColor ?? const Color.fromRGBO(98, 98, 98, 1),
+                )
+              : null,
           fillColor: bgColor ?? Colors.white,
           filled: true,
           alignLabelWithHint: true,
-          label: Text(
-            labelText,
-            style: GoogleFonts.lexendDeca(
-              color: const Color(0xFF95A1AC),
-              fontSize: 14.sp,
-              fontWeight: FontWeight.normal,
+          label: Padding(
+            padding: EdgeInsets.only(top: 20.0.h),
+            child: Text(
+              labelText,
+              style: GoogleFonts.lexendDeca(
+                color: const Color(0xFF95A1AC),
+                fontSize: 16.sp,
+                fontWeight: FontWeight.normal,
+              ),
             ),
           ),
           border: OutlineInputBorder(

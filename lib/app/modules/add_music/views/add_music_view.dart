@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:luxe_desires/app/constants/theme_controller.dart';
 import 'package:luxe_desires/app/widgets/input_feild.dart';
 import 'package:luxe_desires/app/widgets/submit_button.dart';
-
 import '../../../constants/app_color.dart';
 import '../controllers/add_music_controller.dart';
 

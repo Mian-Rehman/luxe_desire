@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "344306523054",
+    "project_id": "luxe-desires-582f9",
+    "storage_bucket": "luxe-desires-582f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344306523054:android:ddaa94f9779105d4f6463f",
+        "android_client_info": {
+          "package_name": "com.luxe.luxe_desires"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLq_ejjDa7fesDN_iSGQYS4ukU074DrFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

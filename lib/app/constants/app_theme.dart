@@ -8,6 +8,8 @@ class AppTheme {
 
   static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: LightThemeColor.primaryBackground,
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(seedColor: DarkThemeColor.primary),
     textTheme: TextTheme(
       displayLarge: displayStyle.copyWith(
         color: LightThemeColor.primaryText,
@@ -47,6 +49,8 @@ class AppTheme {
   );
 
   static ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(seedColor: DarkThemeColor.primary),
     canvasColor: DarkThemeColor.primaryBackground,
     scaffoldBackgroundColor: DarkThemeColor.primaryBackground,
     textTheme: TextTheme(

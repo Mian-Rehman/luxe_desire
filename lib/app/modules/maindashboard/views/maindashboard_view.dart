@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
+import 'package:luxe_desires/app/pages/reward_screen.dart';
+import 'package:luxe_desires/app/pages/ticket_screen.dart';
 
 import '../controllers/maindashboard_controller.dart';
 
@@ -51,17 +53,19 @@ class CustomBottomBar extends StatelessWidget {
               },
             ),
             NavItem(
-              icon: Icons.graphic_eq,
+              icon: Icons.airplane_ticket_rounded,
               isActive: barController.currentTab.value == 1,
               onTap: () {
-                barController.currentTab.value = 1;
+                // barController.currentTab.value = 1;
+                Get.to(TicketScreen());
               },
             ),
             NavItem(
-              icon: Icons.music_note,
+              icon: Icons.shopping_bag,
               isActive: barController.currentTab.value == 2,
               onTap: () {
-                barController.currentTab.value = 2;
+                // barController.currentTab.value = 2;
+                Get.to(RewardScreen());
               },
             ),
             NavItem(
