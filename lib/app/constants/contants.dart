@@ -49,11 +49,13 @@ var size = Get.size;
 
 toast({required String message, required Color color, required String title}) {
   Get.snackbar(
-      icon: const Icon(
+      icon: Icon(
         Icons.info,
+        color: DarkThemeColor.primaryText,
       ),
       title,
       message,
+      colorText: DarkThemeColor.primaryText,
       backgroundGradient: LinearGradient(
           colors: [DarkThemeColor.primary, DarkThemeColor.primary]),
       maxWidth: size.width > 500 ? Get.size.width * .5 : size.width,

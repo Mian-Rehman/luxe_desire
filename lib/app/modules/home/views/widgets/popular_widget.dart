@@ -55,13 +55,13 @@ class PopularWidget extends StatelessWidget {
                   children: [
                     Text(
                       '[Jamies]',
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                       child: Text(
                         '[rock music]',
-                        style: Theme.of(context).textTheme.labelMedium,
+                        style: Theme.of(context).textTheme.labelSmall,
                       ),
                     ),
                   ],

@@ -46,7 +46,7 @@ class LoginTab extends StatelessWidget {
                 return '';
               }
             },
-            inputController: controller.emailAddressController,
+            inputController: controller.emailController,
           ),
           SizedBox(
             height: 12.h,
@@ -79,7 +79,7 @@ class LoginTab extends StatelessWidget {
                   onTap: () {
                     controller.loginLoader();
                     AuthServices().login(
-                        email: controller.emailAddressController.text,
+                        email: controller.emailController.text,
                         password: controller.passwordLoginController.text);
                   },
                   width: 230.w,

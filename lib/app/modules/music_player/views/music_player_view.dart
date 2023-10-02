@@ -95,7 +95,7 @@ class MusicPlayerView extends StatelessWidget {
                                           data['artistName'],
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyMedium!
+                                              .bodySmall!
                                               .copyWith(
                                                 color: !isDark
                                                     ? LightThemeColor

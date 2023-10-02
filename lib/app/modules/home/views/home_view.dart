@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/modules/home/views/components/menu_area.dart';
 import 'package:luxe_desires/app/modules/home/views/components/popular_area.dart';
 import '../controllers/home_controller.dart';
@@ -19,7 +18,6 @@ class HomeView extends GetView<HomeController> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(

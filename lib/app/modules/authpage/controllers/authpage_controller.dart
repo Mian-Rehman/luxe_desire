@@ -8,6 +8,8 @@ class AuthController extends GetxController {
   // signup controllers
   final nameController = TextEditingController();
   final emailAddressController = TextEditingController();
+  final emailController = TextEditingController();
+
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordVisibility = false.obs;

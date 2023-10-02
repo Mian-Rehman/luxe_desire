@@ -6,7 +6,6 @@ import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/modules/home/views/widgets/popular_widget.dart';
 import 'package:luxe_desires/app/modules/musiclist/views/widgets/widgets.dart';
-import 'package:luxe_desires/app/routes/app_pages.dart';
 import '../../../constants/theme_controller.dart';
 import '../../../widgets/input_feild.dart';
 import '../controllers/musiclist_controller.dart';
@@ -45,9 +44,12 @@ class MusiclistView extends GetView<MusiclistController> {
                   suffix: CupertinoIcons.search,
                   suffixPress: () {},
                   inputController: searchMusicController),
+              const SizedBox(
+                height: 20,
+              ),
               const Text(
                 "Your Library",
-                style: TextStyle(fontSize: 19),
+                style: TextStyle(fontSize: 15),
               ),
               SizedBox(
                 height: 265.w,
@@ -90,14 +92,14 @@ class MusiclistView extends GetView<MusiclistController> {
                             ),
                             Text(
                               'Jamies',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0, 5, 0, 0),
                               child: Text(
                                 '[rock music]',
-                                style: Theme.of(context).textTheme.labelMedium,
+                                style: Theme.of(context).textTheme.labelSmall,
                               ),
                             ),
                           ],
@@ -107,7 +109,7 @@ class MusiclistView extends GetView<MusiclistController> {
               ),
               const Text(
                 "Recently played",
-                style: TextStyle(fontSize: 19),
+                style: TextStyle(fontSize: 15),
               ),
               SizedBox(
                 height: 265.w,
@@ -119,7 +121,7 @@ class MusiclistView extends GetView<MusiclistController> {
                     itemCount: 5,
                     itemBuilder: (context, index) {
                       return Container(
-                        padding: const EdgeInsets.only(top: 10, right: 20),
+                        padding: const EdgeInsets.only(top: 10, right: 10),
                         decoration: BoxDecoration(
                           color: !isDark
                               ? LightThemeColor.primary
@@ -150,14 +152,14 @@ class MusiclistView extends GetView<MusiclistController> {
                             ),
                             Text(
                               'Jamies',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0, 5, 0, 0),
                               child: Text(
                                 '[rock music]',
-                                style: Theme.of(context).textTheme.labelMedium,
+                                style: Theme.of(context).textTheme.labelSmall,
                               ),
                             ),
                           ],
@@ -167,7 +169,7 @@ class MusiclistView extends GetView<MusiclistController> {
               ),
               const Text(
                 "Browse All",
-                style: TextStyle(fontSize: 19),
+                style: TextStyle(fontSize: 15),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -266,14 +268,14 @@ class MusiclistView extends GetView<MusiclistController> {
                 children: [
                   const Text(
                     "Songs",
-                    style: TextStyle(fontSize: 17),
+                    style: TextStyle(fontSize: 15),
                   ),
                   TextButton(
                     onPressed: () => Get.to(const MusicPlayListWidget()),
                     child: Text(
                       "View all",
                       style: TextStyle(
-                          fontSize: 17, color: DarkThemeColor.primary),
+                          fontSize: 15, color: DarkThemeColor.primary),
                     ),
                   ),
                 ],

@@ -56,7 +56,7 @@ class HelpAndSupport extends StatelessWidget {
                   style: GoogleFonts.readexPro(
                     color: DarkThemeColor.primaryText,
                     fontWeight: FontWeight.w300,
-                    fontSize: 17.sp,
+                    fontSize: 15.sp,
                   ),
                 ),
                 const Icon(
@@ -91,7 +91,7 @@ class HelpAndSupport extends StatelessWidget {
                   style: GoogleFonts.readexPro(
                     color: DarkThemeColor.primaryText,
                     fontWeight: FontWeight.w300,
-                    fontSize: 17.sp,
+                    fontSize: 15.sp,
                   ),
                 ),
                 const Icon(
@@ -127,7 +127,7 @@ class HelpAndSupport extends StatelessWidget {
                   style: GoogleFonts.readexPro(
                     color: DarkThemeColor.primaryText,
                     fontWeight: FontWeight.w300,
-                    fontSize: 17.sp,
+                    fontSize: 15.sp,
                   ),
                 ),
                 const Icon(
@@ -163,7 +163,7 @@ class HelpAndSupport extends StatelessWidget {
                   style: GoogleFonts.readexPro(
                     color: DarkThemeColor.primaryText,
                     fontWeight: FontWeight.w300,
-                    fontSize: 17.sp,
+                    fontSize: 15.sp,
                   ),
                 ),
                 const Icon(
@@ -226,7 +226,7 @@ class HelpAndSupport extends StatelessWidget {
                                   ? LightThemeColor.primaryText
                                   : DarkThemeColor.primaryText,
                               fontWeight: FontWeight.w400,
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                             ),
                           ),
                         ],

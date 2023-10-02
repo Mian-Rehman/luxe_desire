@@ -107,7 +107,7 @@ class InputField extends StatelessWidget {
               labelText,
               style: GoogleFonts.lexendDeca(
                 color: const Color(0xFF95A1AC),
-                fontSize: 16.sp,
+                fontSize: 13.sp,
                 fontWeight: FontWeight.normal,
               ),
             ),

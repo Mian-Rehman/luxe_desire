@@ -170,6 +170,7 @@ class SignUpTab extends GetView<AuthController> {
                                         'password': controller
                                             .passwordConfirmController.text,
                                         'userID': currentUser!.uid,
+                                        'profilePic': '',
                                         'joinDate': DateTime.now()
                                       });
                                 },

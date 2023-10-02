@@ -51,8 +51,8 @@ class CategoryWidget extends StatelessWidget {
                       ? shishaList.length
                       : merchandiseList.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
               mainAxisExtent: size.height * .15.h,
               crossAxisCount: 2),
           itemBuilder: (_, index) {
@@ -74,7 +74,7 @@ class CategoryWidget extends StatelessWidget {
                     data,
                     style: GoogleFonts.readexPro(
                       color: DarkThemeColor.primaryText,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       fontSize: 15.sp,
                     ),
                   )),

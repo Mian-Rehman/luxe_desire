@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/modules/menu_screen/widgets/category_widget.dart';
 import 'package:luxe_desires/app/widgets/container_widget.dart';
-
 import '../../constants/app_color.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -32,8 +31,8 @@ class MenuScreen extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   itemCount: menuList.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
                       mainAxisExtent: size.height * .15.h,
                       crossAxisCount: 2),
                   itemBuilder: (_, index) {
@@ -47,7 +46,7 @@ class MenuScreen extends StatelessWidget {
                             menuList[index],
                             style: GoogleFonts.readexPro(
                               color: DarkThemeColor.primaryText,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
                               fontSize: 15.sp,
                             ),
                           )),

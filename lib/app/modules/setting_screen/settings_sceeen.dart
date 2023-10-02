@@ -23,8 +23,8 @@ class SettingsScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           itemCount: settingsList.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
               mainAxisExtent: size.height * .15.h,
               crossAxisCount: 2),
           itemBuilder: (_, index) {

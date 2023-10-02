@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
+import 'package:luxe_desires/app/constants/contants.dart';
+import 'package:luxe_desires/app/widgets/container_widget.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class RewardScreen extends StatefulWidget {
@@ -20,6 +22,7 @@ class _RewardScreenState extends State<RewardScreen> {
       appBar: AppBar(
         title: const Text("Rewards"),
         centerTitle: true,
+        foregroundColor: DarkThemeColor.primaryText,
         backgroundColor: DarkThemeColor.primary,
       ),
       body: Column(
@@ -28,7 +31,7 @@ class _RewardScreenState extends State<RewardScreen> {
             visible: _rewardCards,
             child: Container(
               width: MediaQuery.sizeOf(context).width,
-              margin: const EdgeInsets.all(20),
+              margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
@@ -48,7 +51,7 @@ class _RewardScreenState extends State<RewardScreen> {
                     child: const Text(
                       "August Flavour of the \nMonth Reward",
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 15,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
@@ -58,7 +61,7 @@ class _RewardScreenState extends State<RewardScreen> {
                       Container(
                         margin: const EdgeInsets.only(left: 20, bottom: 20),
                         child: const Text(
-                          "Expire31/08/2023",
+                          "Expire 31/08/2023",
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.black,
@@ -82,7 +85,10 @@ class _RewardScreenState extends State<RewardScreen> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(25),
                                 color: Colors.amber),
-                            child: const Icon(Icons.arrow_forward_ios),
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: DarkThemeColor.primaryText,
+                            ),
                           ),
                         ),
                       ),
@@ -108,8 +114,19 @@ class _RewardScreenState extends State<RewardScreen> {
                     height: 20,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      IconButton(
+                          onPressed: () => setState(() {
+                                _qrVisibility = false;
+                                _rewardCards = true;
+                              }),
+                          icon: const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: Colors.white,
+                          )),
+                      SizedBox(
+                        width: size.width * .12,
+                      ),
                       const Text(
                         "Luxe Desires",
                         style: TextStyle(fontSize: 16),
@@ -158,9 +175,7 @@ class _RewardScreenState extends State<RewardScreen> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Container(
-                    child: const Text("Scan every purchase for rewards"),
-                  ),
+                  const Text("Scan every purchase for rewards"),
                   const SizedBox(
                     height: 30,
                   ),

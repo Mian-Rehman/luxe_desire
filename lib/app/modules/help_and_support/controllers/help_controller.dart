@@ -14,22 +14,32 @@ class HelpAndSupportController extends GetxController {
 // Upload Product Data to Firestore
   uploadDataToDB() async {
     try {
-      await firestore.collection('help&support').add({
-        'name': nameController.text,
-        'desc': descController.text,
-        'email': emailController.text,
-        'phoneNumber': phoneController.text,
-        'userId': currentUser!.uid
-      });
-      toast(
-        color: DarkThemeColor.primary,
-        title: 'Alert!',
-        message: 'Upload Data Successfully',
-      );
-      nameController.clear();
-      phoneController.clear();
-      emailController.clear();
-      descController.clear();
+      if (nameController.text.isNotEmpty &&
+          phoneController.text.isNotEmpty &&
+          emailController.text.isNotEmpty &&
+          descController.text.isNotEmpty) {
+        await firestore.collection('help&support').add({
+          'name': nameController.text,
+          'desc': descController.text,
+          'email': emailController.text,
+          'phoneNumber': phoneController.text,
+          'userId': currentUser!.uid
+        });
+        toast(
+          color: DarkThemeColor.primary,
+          title: 'Alert!',
+          message: 'Upload Data Successfully',
+        );
+        nameController.clear();
+        phoneController.clear();
+        emailController.clear();
+        descController.clear();
+      } else {
+        toast(
+            message: 'Please fill all required fields',
+            color: DarkThemeColor.primary,
+            title: 'Alert!');
+      }
     } catch (e) {
       debugPrint('Error#: ${e.toString()}');
     }

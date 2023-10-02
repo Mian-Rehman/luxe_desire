@@ -56,7 +56,7 @@ class BrowseWidget extends StatelessWidget {
                       color: isDark
                           ? DarkThemeColor.primary
                           : DarkThemeColor.alternate,
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
               ),
             ],

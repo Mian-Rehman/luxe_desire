@@ -42,6 +42,7 @@ class JoinTeamController extends GetxController {
         'insta': instaController.text,
         'soundCloud': soundBandController.text,
         'userId': currentUser!.uid,
+        'status': 'Pending',
         'datetime': DateTime.now()
       });
       toast(
