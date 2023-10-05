@@ -299,7 +299,9 @@ class _GuestlistScreenState extends State<GuestlistScreen> {
                           onTap: () {
                             showBox(
                                 confirmText: 'OK',
+                                title: 'Thanks',
                                 desc:
+                                
                                     "Thank you for choosing us for your next event and we can't wait to see you and all your friends! We have received your booking and will be in touch shortly to confirm.",
                                 confirm: () => Get.back());
                           })

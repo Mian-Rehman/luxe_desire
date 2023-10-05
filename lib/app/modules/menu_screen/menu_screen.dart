@@ -6,6 +6,7 @@ import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/modules/menu_screen/widgets/category_widget.dart';
 import 'package:luxe_desires/app/widgets/container_widget.dart';
 import '../../constants/app_color.dart';
+import '../home/views/widgets/category_widget.dart';
 
 class MenuScreen extends StatelessWidget {
   MenuScreen({super.key});
@@ -37,8 +38,8 @@ class MenuScreen extends StatelessWidget {
                       crossAxisCount: 2),
                   itemBuilder: (_, index) {
                     return InkWell(
-                      onTap: () => Get.to(
-                          () => CategoryWidget(category: menuList[index])),
+                      onTap: () =>
+                          Get.to(() => CategoryPage(category: menuList[index])),
                       borderRadius: BorderRadius.circular(20),
                       child: ContainerWidget(
                           bgColor: DarkThemeColor.primary,

@@ -38,6 +38,7 @@ List<SettingModel> settingsList = [
     icon: Icons.emergency_sharp,
     text: 'Emergency',
     press: () => showBox(
+        title: 'Alert!',
         confirmText: 'Emergency Call',
         desc:
             'In case of an emergency click on Emergency Call below to be connected with Emergency Services',
@@ -47,6 +48,7 @@ List<SettingModel> settingsList = [
     icon: Icons.logout,
     text: 'Log Out',
     press: () => showBox(
+        title: 'Alert!',
         confirmText: 'Log Out',
         desc:
             'Please confirm you wish to log out of your account by clicking log out below',

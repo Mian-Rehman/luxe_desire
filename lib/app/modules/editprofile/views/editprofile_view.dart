@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,7 +11,6 @@ import 'package:luxe_desires/app/constants/firebase.dart';
 import 'package:luxe_desires/app/constants/theme_controller.dart';
 import 'package:luxe_desires/app/widgets/input_feild.dart';
 import 'package:luxe_desires/app/widgets/submit_button.dart';
-
 import '../../../widgets/container_widget.dart';
 import '../controllers/editprofile_controller.dart';
 
@@ -70,7 +69,7 @@ class _EditprofileViewState extends State<EditprofileView> {
       body: StreamBuilder(
           stream: firestore
               .collection('users')
-              .where('email', isEqualTo: currentUser!.email)
+              .where('email', isEqualTo: auth.currentUser!.email)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -83,29 +82,41 @@ class _EditprofileViewState extends State<EditprofileView> {
                     controller.phoneNumberController.text = data['phoneNumber'];
                     return Column(
                       children: [
+                        SizedBox(
+                          height: size.height * .02,
+                        ),
                         Container(
                             width: 150,
                             height: 150,
                             margin: const EdgeInsets.only(top: 10, bottom: 10),
                             decoration:
                                 const BoxDecoration(shape: BoxShape.circle),
-                            child: data['profilePic'] != ''
+                            child: image == null
                                 ? CircleAvatar(
                                     backgroundImage: NetworkImage(
                                     data['profilePic'],
                                   ))
-                                : image == null
-                                    ? const CircleAvatar(
-                                        backgroundImage: AssetImage(
-                                        'assets/imgs/Logo.png',
-                                      ))
-                                    : CircleAvatar(
-                                        backgroundImage: FileImage(
-                                          image!,
-                                        ),
-                                      )),
+                                : CircleAvatar(
+                                    backgroundImage: FileImage(
+                                      image!,
+                                    ),
+                                  )),
+                        Text(
+                          data['userName'],
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: size.height * .02,
+                        ),
                         TextButton(
-                          child: const Text("Change profile picture"),
+                          child: Text(
+                            "Change profile picture",
+                            style: TextStyle(
+                                color: isDark
+                                    ? DarkThemeColor.primaryText
+                                    : DarkThemeColor.secondaryText),
+                          ),
                           onPressed: () {
                             Get.defaultDialog(
                                 title: 'Select Image from',
@@ -124,7 +135,7 @@ class _EditprofileViewState extends State<EditprofileView> {
                           },
                         ),
                         SizedBox(
-                          height: size.height * .05.h,
+                          height: size.height * .02.h,
                         ),
                         Container(
                           width: MediaQuery.sizeOf(context).width,
@@ -148,98 +159,35 @@ class _EditprofileViewState extends State<EditprofileView> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              InputField(
-                                labelText: 'UserName',
-                                validatior: (value) {
-                                  if (value.toString().isEmpty) {
-                                    return '';
-                                  }
-                                },
-                                bgColor: Colors.white,
-                                textInputAction: TextInputAction.next,
-                                inputController: controller.nameController,
-                                isContentPadding: false,
-                              ),
+                              ContainerWidget(
+                                  width: double.infinity,
+                                  height: 50,
+                                  bgColor: DarkThemeColor.primary,
+                                  child: Text(data['email'])),
                               SizedBox(
-                                height: 12.h,
+                                height: size.height * .02,
                               ),
-                              InputField(
-                                labelText: 'Email',
-                                validatior: (value) {
-                                  if (value.toString().isEmpty) {
-                                    return '';
-                                  }
-                                },
-                                bgColor: Colors.white,
-                                textInputAction: TextInputAction.next,
-                                inputController:
-                                    controller.emailAddressController,
-                                isContentPadding: false,
-                              ),
+                              ContainerWidget(
+                                  width: double.infinity,
+                                  height: 50,
+                                  bgColor: DarkThemeColor.primary,
+                                  child: Text(data['phoneNumber'])),
                               SizedBox(
-                                height: 12.h,
+                                height: size.height * .02.h,
                               ),
-                              InputField(
-                                labelText: 'Number',
-                                validatior: (value) {
-                                  if (value.toString().isEmpty) {
-                                    return '';
-                                  }
+                              SubmitButton(
+                                title: 'Update Profile',
+                                onTap: () {
+                                  Get.defaultDialog(
+                                      title: 'Profile Page',
+                                      backgroundColor: DarkThemeColor.primary,
+                                      content: profileFormMethod(data, isDark));
                                 },
-                                bgColor: Colors.white,
-                                textInputAction: TextInputAction.next,
-                                inputController:
-                                    controller.phoneNumberController,
-                                isContentPadding: false,
+                                width: double.infinity.w,
+                                height: 50.h,
+                                textColor: DarkThemeColor.primaryText,
+                                bgColor: DarkThemeColor.primary,
                               ),
-                              SizedBox(
-                                height: size.height * .05.h,
-                              ),
-                              Obx(() => controller.loading.value == false
-                                  ? SubmitButton(
-                                      title: 'Update Profile',
-                                      onTap: () {
-                                        controller.loader();
-                                        controller.updateProfile(
-                                            id: data.id, image: image!);
-                                      },
-                                      width: 230.w,
-                                      height: 50.h,
-                                      textColor: DarkThemeColor.primaryText,
-                                      bgColor: DarkThemeColor.primary,
-                                    )
-                                  : ContainerWidget(
-                                      bgColor: DarkThemeColor.primary,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            const Center(
-                                              child: CircularProgressIndicator(
-                                                backgroundColor: Colors.white,
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Text(
-                                              'Profile Updating...',
-                                              style: GoogleFonts.readexPro(
-                                                color: !isDark
-                                                    ? LightThemeColor
-                                                        .primaryText
-                                                    : DarkThemeColor
-                                                        .primaryText,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 16.sp,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ))),
                               SizedBox(
                                 height: 30.h,
                               )
@@ -255,6 +203,100 @@ class _EditprofileViewState extends State<EditprofileView> {
               );
             }
           }),
+    );
+  }
+
+  Column profileFormMethod(
+      QueryDocumentSnapshot<Map<String, dynamic>> data, bool isDark) {
+    return Column(
+      children: [
+        InputField(
+          labelText: 'UserName',
+          validatior: (value) {
+            if (value.toString().isEmpty) {
+              return '';
+            }
+          },
+          bgColor: Colors.white,
+          textInputAction: TextInputAction.next,
+          inputController: controller.nameController,
+          isContentPadding: false,
+        ),
+        SizedBox(
+          height: 12.h,
+        ),
+        InputField(
+          labelText: 'Email',
+          validatior: (value) {
+            if (value.toString().isEmpty) {
+              return '';
+            }
+          },
+          bgColor: Colors.white,
+          textInputAction: TextInputAction.next,
+          inputController: controller.emailAddressController,
+          isContentPadding: false,
+        ),
+        SizedBox(
+          height: 12.h,
+        ),
+        InputField(
+          labelText: 'Number',
+          validatior: (value) {
+            if (value.toString().isEmpty) {
+              return '';
+            }
+          },
+          bgColor: Colors.white,
+          textInputAction: TextInputAction.done,
+          inputController: controller.phoneNumberController,
+          isContentPadding: false,
+        ),
+        SizedBox(
+          height: size.height * .05.h,
+        ),
+        Obx(() => controller.loading.value == false
+            ? SubmitButton(
+                title: 'Update',
+                onTap: () {
+                  controller.loader();
+                  controller.updateProfile(
+                      id: data.id, image: image!, oldImage: data['profilePic']);
+                },
+                width: double.infinity.w,
+                height: 50.h,
+                textColor: DarkThemeColor.primaryText,
+                bgColor: DarkThemeColor.primary,
+              )
+            : ContainerWidget(
+                bgColor: DarkThemeColor.primary,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Center(
+                        child: CircularProgressIndicator(
+                          backgroundColor: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Profile Updating...',
+                        style: GoogleFonts.readexPro(
+                          color: !isDark
+                              ? LightThemeColor.primaryText
+                              : DarkThemeColor.primaryText,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ))),
+      ],
     );
   }
 }

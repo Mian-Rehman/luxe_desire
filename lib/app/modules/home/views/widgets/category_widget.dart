@@ -10,7 +10,7 @@ import '../../../eventScreen/views/event_screen_view.dart';
 class CategoryWidget extends StatelessWidget {
   final String title;
   final IconData icon;
-  const CategoryWidget({super.key, required this.title, required this.icon});
+  const CategoryWidget({super.key, required this.title, required this.icon, required category});
 
   @override
   Widget build(BuildContext context) {

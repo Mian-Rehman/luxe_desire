@@ -35,7 +35,7 @@ class MusicPlayerView extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         controller: pageController,
                         itemCount: snapshot.data!.docs.length,
-                        onPageChanged: (value) {},
+                        onPageChanged: (value) => controller.audioPlayer.stop(),
                         itemBuilder: (_, index) {
                           var data = snapshot.data!.docs[index];
                           return Column(
@@ -225,8 +225,11 @@ class MusicPlayerView extends StatelessWidget {
                                   ),
                                   Bounce(
                                     duration: const Duration(milliseconds: 200),
-                                    onPressed: () => controller
-                                        .playAndStopAudio(url: data['audio']),
+                                    onPressed: () {
+                                      controller.playAndStopAudio(
+                                          url: data['audio']);
+                                      controller.audioPlayer.stop();
+                                    },
                                     child: Container(
                                       width: 50,
                                       height: 50,
@@ -246,9 +249,14 @@ class MusicPlayerView extends StatelessWidget {
                                     child: Bounce(
                                       duration:
                                           const Duration(milliseconds: 200),
-                                      onPressed: () => pageController.nextPage(
-                                          duration: const Duration(seconds: 2),
-                                          curve: Curves.bounceInOut),
+                                      onPressed: () {
+                                        pageController.nextPage(
+                                            duration:
+                                                const Duration(seconds: 1),
+                                            curve: Curves.bounceInOut);
+
+                                        controller.audioPlayer.stop();
+                                      },
                                       child: const Card(
                                           color: Colors.black26,
                                           child: Icon(

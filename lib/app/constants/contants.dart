@@ -64,11 +64,12 @@ toast({required String message, required Color color, required String title}) {
 
 showBox({
   required String desc,
+  required String title,
   required String confirmText,
   required Function() confirm,
 }) {
   Get.defaultDialog(
-    title: 'Hurrey!',
+    title: title,
     backgroundColor: DarkThemeColor.primary,
     titleStyle: GoogleFonts.readexPro(
       color: DarkThemeColor.primaryText,

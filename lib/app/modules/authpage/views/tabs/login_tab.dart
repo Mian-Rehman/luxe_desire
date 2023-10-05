@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/modules/authpage/controllers/authpage_controller.dart';
+import 'package:luxe_desires/app/modules/authpage/views/otp_screen.dart';
 import 'package:luxe_desires/app/modules/authpage/views/tabs/signup_tab.dart';
 import 'package:luxe_desires/app/routes/app_pages.dart';
 import 'package:luxe_desires/app/widgets/container_widget.dart';
@@ -77,12 +78,21 @@ class LoginTab extends StatelessWidget {
               ? SubmitButton(
                   title: 'Login',
                   onTap: () {
-                    controller.loginLoader();
-                    AuthServices().login(
+                    if (controller.emailController.text.isNotEmpty &&
+                        controller.passwordLoginController.text.isNotEmpty) {
+                      controller.loginLoader();
+                      AuthServices().login(
                         email: controller.emailController.text,
-                        password: controller.passwordLoginController.text);
+                        password: controller.passwordLoginController.text,
+                      );
+                    } else {
+                      toast(
+                          message: 'Please fill required fields',
+                          color: DarkThemeColor.primary,
+                          title: 'Alert!');
+                    }
                   },
-                  width: 230.w,
+                  width: size.width.w,
                   height: 50.h,
                   textColor: DarkThemeColor.primaryText,
                   bgColor: DarkThemeColor.primary,

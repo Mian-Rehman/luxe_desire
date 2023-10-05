@@ -3,17 +3,27 @@ import 'package:get/get.dart';
 import 'package:luxe_desires/app/data/models/events.dart';
 
 class EventScreenController extends GetxController {
-  final count = 0.obs;
-
   final eventController = Get.put(Events());
-
   var isLoading = false.obs;
   var selectedDate = DateTime.now().obs;
   List<Event> events = [];
+  final count = 0.obs;
+
   @override
   void onInit() {
-    // fetchEvents();
+    fetchEvents();
     super.onInit();
+  }
+
+  void increment() => count.value++;
+
+  fetchEvents() {
+    isLoading.value = true;
+    eventController.fetchAndSetEvents().then((value) {
+      isLoading.value = false;
+
+      events = eventController.events;
+    });
   }
 
   getDate({required BuildContext context}) async {
@@ -28,15 +38,5 @@ class EventScreenController extends GetxController {
     } else {}
     update();
     print(selectedDate);
-  }
-
-  void increment() => count.value++;
-  fetchEvents() {
-    isLoading.value = true;
-    eventController.fetchAndSetEvents().then((value) {
-      isLoading.value = false;
-
-      events = eventController.events;
-    });
   }
 }

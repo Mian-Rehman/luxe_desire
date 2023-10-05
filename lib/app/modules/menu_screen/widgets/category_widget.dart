@@ -3,13 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
-import 'package:luxe_desires/app/modules/menu_screen/widgets/items_widget.dart';
-
 import '../../../constants/contants.dart';
 import '../../../widgets/container_widget.dart';
+import 'items_widget.dart';
 
-class CategoryWidget extends StatelessWidget {
-  CategoryWidget({super.key, required this.category});
+class CategoryPage extends StatelessWidget {
+  CategoryPage({super.key, required this.category});
   final String category;
 
   List beveragesList = [
@@ -64,7 +63,7 @@ class CategoryWidget extends StatelessWidget {
                         ? shishaList[index]
                         : merchandiseList[index];
             return InkWell(
-              onTap: () => Get.to(() => ItemWidget(
+              onTap: () => Get.to(() => ItemsWidget(
                     categoryName: data,
                   )),
               borderRadius: BorderRadius.circular(20),

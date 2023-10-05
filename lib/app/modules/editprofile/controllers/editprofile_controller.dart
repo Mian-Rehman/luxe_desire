@@ -41,14 +41,17 @@ class EditprofileController extends GetxController {
     loading.value = false;
   }
 
-  updateProfile({required String id, required File image}) async {
+  updateProfile(
+      {required String id,
+      required File image,
+      required String oldImage}) async {
     try {
       final String imageUrl = await firebaseStorage(image: image);
       await firestore.collection('users').doc(id).update({
         'userName': nameController.text,
         'email': emailAddressController.text,
         'phoneNumber': phoneNumberController.text,
-        'profilePic': imageUrl
+        'profilePic': imageUrl.isNotEmpty ? imageUrl : oldImage
       });
       toast(
         color: DarkThemeColor.primary,

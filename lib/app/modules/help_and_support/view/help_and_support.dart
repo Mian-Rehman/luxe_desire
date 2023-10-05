@@ -196,8 +196,18 @@ class HelpAndSupport extends StatelessWidget {
                 ? SubmitButton(
                     title: 'Send',
                     onTap: () {
-                      controller.loader();
-                      controller.uploadDataToDB();
+                      if (controller.nameController.text.isNotEmpty &&
+                          controller.emailController.text.isNotEmpty &&
+                          controller.phoneController.text.isNotEmpty &&
+                          controller.descController.text.isNotEmpty) {
+                        controller.loader();
+                        controller.uploadDataToDB();
+                      } else {
+                        toast(
+                            message: 'Please fill all required fields',
+                            color: DarkThemeColor.primary,
+                            title: 'Alert!');
+                      }
                     },
                     width: double.infinity.w,
                     height: 50.h,

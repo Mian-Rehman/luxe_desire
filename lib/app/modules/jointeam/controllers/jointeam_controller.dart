@@ -28,7 +28,7 @@ class JoinTeamController extends GetxController {
   var selectedValue = 'DJ'.obs;
   var loading = false.obs;
 // Upload Product Data to Firestore
-  updatedDataToDB() async {
+  uploadDataToDB() async {
     try {
       await firestore.collection('team').doc(currentUser!.uid).set({
         'surName': surNameController.text,
@@ -41,14 +41,14 @@ class JoinTeamController extends GetxController {
         'fb': fbController.text,
         'insta': instaController.text,
         'soundCloud': soundBandController.text,
-        'userId': currentUser!.uid,
+        'userId': auth.currentUser!.uid,
         'status': 'Pending',
-        'datetime': DateTime.now()
+        'datetime': DateFormat().format(DateTime.now())
       });
       toast(
         color: DarkThemeColor.primary,
         title: 'Alert!',
-        message: 'Upload Data Successfully',
+        message: 'Your request sent Successfully',
       );
       nameController.clear();
       surNameController.clear();
@@ -70,7 +70,7 @@ class JoinTeamController extends GetxController {
   }
 
   // Upload Product Data to Firestore
-  uploadDataToDB() async {
+  updateDataToDB() async {
     try {
       await firestore.collection('team').doc(currentUser!.uid).update({
         'surName': surNameController.text,
@@ -84,7 +84,7 @@ class JoinTeamController extends GetxController {
         'insta': instaController.text,
         'soundCloud': soundBandController.text,
         'userId': currentUser!.uid,
-        'datetime': DateTime.now()
+        'datetime': DateFormat().format(DateTime.now())
       });
       toast(
         color: DarkThemeColor.primary,
@@ -114,7 +114,7 @@ class JoinTeamController extends GetxController {
     QuerySnapshot querySnapshot = await firestore.collection('team').get();
     usersList = querySnapshot.docs.map((doc) => doc.get('userId')).toList();
     update();
-    debugPrint('Users......${usersList.toString()}');
+    debugPrint('team ${usersList.toString()}');
   }
 
   loader() async {
@@ -155,6 +155,12 @@ class JoinTeamController extends GetxController {
     } else {}
     update();
     print(dob);
+  }
+
+  @override
+  void onReady() {
+    getUsers();
+    super.onReady();
   }
 
   @override

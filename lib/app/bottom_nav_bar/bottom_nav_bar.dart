@@ -17,7 +17,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 0;
   List pages = [
-    const HomeView(),
+    HomeView(),
     const TicketScreen(),
     const RewardScreen(),
     const JointeamView(),

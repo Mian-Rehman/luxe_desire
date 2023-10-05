@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:luxe_desires/app/routes/app_pages.dart';
+import 'package:luxe_desires/app/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:luxe_desires/app/modules/authpage/controllers/authpage_controller.dart';
 import '../constants/app_color.dart';
 import '../constants/contants.dart';
 import '../constants/firebase.dart';
@@ -21,13 +22,12 @@ class AuthServices {
         await auth.signInWithEmailAndPassword(email: email, password: password);
         Future.delayed(const Duration(seconds: 4), () async {
           if (auth.currentUser != null) {
-            await firestore.collection(dbName).doc(currentUser!.uid).set(map);
-            toast(
-                message: 'Account created successfully!',
-                color: Colors.green,
-                title: '🥳 Successfully!');
+            await firestore.collection(dbName).doc(email).set(map);
+            // toast(
+            //     message: 'Account created successfully!',
+            //     color: Colors.green,
+            //     title: '🥳 Successfully!');
           }
-          Navigator.pop(context);
         });
       } catch (e) {
         errorMessage(e);
@@ -48,7 +48,8 @@ class AuthServices {
     if (GetUtils.isEmail(email)) {
       try {
         await auth.signInWithEmailAndPassword(email: email, password: password);
-        Get.offAllNamed(Routes.BottomNAV);
+        Get.offAll(const BottomNavBar());
+        // controller.sendEmail();
       } catch (e) {
         errorMessage(e);
       }
