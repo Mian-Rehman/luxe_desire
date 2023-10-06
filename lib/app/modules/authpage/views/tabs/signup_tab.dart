@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -81,7 +80,7 @@ class _SignUpTabState extends State<SignUpTab> {
                   child: image == null
                       ? const CircleAvatar(
                           backgroundImage: AssetImage(
-                          'assets/imgs/Logo.png',
+                          'assets/imgs/yellow_logo.png',
                         ))
                       : CircleAvatar(
                           backgroundImage: FileImage(

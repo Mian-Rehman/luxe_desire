@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -48,8 +47,7 @@ class _VideoareaState extends State<VideoContainer> {
       return VideoPlayerController.file(File(widget.file!.path));
     }
     if (widget.videoUrl != null) {
-      return VideoPlayerController.networkUrl(
-          Uri.parse(widget.videoUrl.toString()));
+      return VideoPlayerController.asset('assets/imgs/luxe.mp4');
     }
     return null;
   }

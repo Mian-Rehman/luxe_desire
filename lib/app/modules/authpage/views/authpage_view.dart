@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/modules/authpage/views/tabs/login_tab.dart';
-
 import '../../../constants/theme_controller.dart';
 import '../controllers/authpage_controller.dart';
 
@@ -47,7 +45,7 @@ class AuthpageView extends GetView<AuthController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/imgs/Logo.png',
+                      'assets/imgs/black_logo.png',
                       width: 100.w,
                       height: 100.h,
                       fit: BoxFit.cover,

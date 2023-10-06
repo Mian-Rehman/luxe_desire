@@ -38,9 +38,8 @@ class VideoArea extends StatelessWidget {
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () async {
-              Get.to(() => const VideoPlayerScreen(
-                  url:
-                      'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4'));
+              Get.to(
+                  () => const VideoPlayerScreen(url: 'assets/imgs/luxe.mp4'));
             },
             child: InkWell(
               splashColor: Colors.transparent,
@@ -51,8 +50,7 @@ class VideoArea extends StatelessWidget {
                 Get.to(() => const VideoPlayerScreen(
                     url:
                         'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4'));
-
-                },
+              },
               child: Icon(
                 Icons.play_circle_fill_outlined,
                 color: !isDark

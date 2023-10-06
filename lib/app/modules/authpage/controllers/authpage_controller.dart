@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -37,11 +36,10 @@ class AuthController extends GetxController {
     String password = 'esjs wkbu masj pwzu';
     final smtpServer = gmail(username, password);
     final message = Message()
-      ..from = Address(username, 'Luxe Desires')
+      ..from = const Address('Luxe Desires')
       ..recipients.add(emailAddressController.text)
       ..subject = 'OTP Verification'
-      ..text =
-          """
+      ..text = """
 Your OTP is in below\n$otp\nEnter your OTP to verify your email and do not share your OTP with anyone
 """;
     try {

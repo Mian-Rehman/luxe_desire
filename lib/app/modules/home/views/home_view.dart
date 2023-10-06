@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -54,7 +53,7 @@ class HomeView extends StatelessWidget {
                 ),
                 const VideoArea(),
                 const MenuArea(),
-                const ExploreArea(),
+                // const ExploreArea(),
                 const SizedBox(
                   height: 20,
                 ),

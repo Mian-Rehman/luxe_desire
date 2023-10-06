@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/modules/authpage/controllers/authpage_controller.dart';
-import 'package:luxe_desires/app/modules/authpage/views/otp_screen.dart';
 import 'package:luxe_desires/app/modules/authpage/views/tabs/signup_tab.dart';
 import 'package:luxe_desires/app/routes/app_pages.dart';
 import 'package:luxe_desires/app/widgets/container_widget.dart';
@@ -27,13 +26,13 @@ class LoginTab extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 50.h,
+            height: 20.h,
           ),
           Text(
             'Sign In',
             style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   fontSize: 19.sp,
-                  color: DarkThemeColor.primary,
+                  color: Colors.black,
                 ),
           ),
           SizedBox(
