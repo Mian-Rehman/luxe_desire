@@ -1,0 +1,6 @@
+var token =
+    'sk_test_51NyTHFBEjM1tQmY199oRt4dKjQ4cXqZaPMdkRUAvtLdTuizYlSLcU0ZG5LwzqovQCT8kbHoCOykqBLGQck0xK0CG00ydfMNt4T';
+// "sk_test_51O0MofB9J4qPHXx1z8xhnVkSsfDLg6DR0u3FClydvX4d8mrSLA17KowG8Ba5olczbW1yyUxsyOoowwZAKmM27W6200Ljd58Hti";
+var publicKey =
+    'pk_test_51NyTHFBEjM1tQmY1H9MhR1Jd0gBMw2QEkDTd3oXxUQDFCHdKx32B27CrDVnZTNFKibU6Kwnl3rJgUi6GiewW8tdy00lupcpYVl';
+    // "pk_test_51O0MofB9J4qPHXx1qJowA0MTKEHQKjek4oH1SM1J2Cav2oouK8PFlRHSNNgB3Cg2JlEUTgdfafhTWT4xiALKM44G001AJsJrZR";

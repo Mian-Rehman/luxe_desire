@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
+import 'package:luxe_desires/app/payment_integration/payment_integration.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class TicketScreen extends StatefulWidget {
@@ -10,6 +11,8 @@ class TicketScreen extends StatefulWidget {
 }
 
 class _TicketScreenState extends State<TicketScreen> {
+  var payment = '2000';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,9 +125,9 @@ class _TicketScreenState extends State<TicketScreen> {
               const SizedBox(
                 height: 1.5,
               ),
-              const Text(
-                "\$169",
-                style: TextStyle(
+              Text(
+                "\$$payment",
+                style: const TextStyle(
                     fontSize: 25,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
@@ -138,9 +141,8 @@ class _TicketScreenState extends State<TicketScreen> {
               const SizedBox(
                 height: 20,
               ),
-              InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(10),
+              TextButton(
+                onPressed: () => PaymentAPI().makePayment(payment: payment),
                 child: Container(
                   width: 200,
                   height: 50,

@@ -6,7 +6,6 @@ import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/modules/menu_screen/widgets/category_widget.dart';
 import 'package:luxe_desires/app/widgets/container_widget.dart';
 import '../../constants/app_color.dart';
-import '../home/views/widgets/category_widget.dart';
 
 class MenuScreen extends StatelessWidget {
   MenuScreen({super.key});

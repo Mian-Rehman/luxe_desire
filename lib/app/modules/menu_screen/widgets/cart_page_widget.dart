@@ -8,8 +8,9 @@ import 'package:luxe_desires/app/widgets/submit_button.dart';
 import '../../../constants/app_color.dart';
 
 class CartPageWidget extends StatelessWidget {
-  const CartPageWidget({super.key, required this.productName});
-  final String productName;
+  const CartPageWidget(
+      {super.key, required this.productName, required this.price});
+  final String productName, price;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +103,7 @@ class CartPageWidget extends StatelessWidget {
                   ),
                   rowMethod(
                       title: 'Total',
-                      desc: '75.50',
+                      desc: price.toString(),
                       isIcon: true,
                       titleFont: 25.h,
                       descFont: 30.h),

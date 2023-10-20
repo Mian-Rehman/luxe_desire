@@ -34,7 +34,7 @@ class ItemsWidget extends StatelessWidget {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 20,
-                      mainAxisExtent: size.height * .36,
+                      mainAxisExtent: size.height * .38,
                       crossAxisSpacing: 20),
                   itemBuilder: (_, index) {
                     var data = snapshot.data!.docs[index];
@@ -90,8 +90,10 @@ class ItemsWidget extends StatelessWidget {
                             SubmitButton(
                                 bgColor: DarkThemeColor.primary,
                                 title: 'Add to cart',
-                                onTap: () => Get.to(() =>
-                                    CartPageWidget(productName: data['name']))),
+                                onTap: () => Get.to(() => CartPageWidget(
+                                      productName: data['name'],
+                                      price: data['price'],
+                                    ))),
                           ],
                         ),
                       ),
