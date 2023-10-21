@@ -18,6 +18,7 @@ class JoinTeamController extends GetxController {
   final instaController = TextEditingController();
   final dobController = TextEditingController();
   final soundBandController = TextEditingController();
+    var selectedValue = 'DJ'.obs;
   List attendance = [
     'DJ',
     'Entertainer',
@@ -25,7 +26,6 @@ class JoinTeamController extends GetxController {
     'Model',
   ];
   List<dynamic> usersList = [];
-  var selectedValue = 'DJ'.obs;
   var loading = false.obs;
 // Upload Product Data to Firestore
   uploadDataToDB() async {

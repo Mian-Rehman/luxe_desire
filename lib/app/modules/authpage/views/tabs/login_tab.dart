@@ -155,25 +155,12 @@ class LoginTab extends StatelessWidget {
                 title: 'SignUp',
                 textColor: DarkThemeColor.primary,
                 onTap: () async {
-                  // Get.toNamed(Routes.REGISTERPAGE);
                   Get.to(() => const SignUpTab());
                 },
                 width: 73.w,
                 height: 40.h,
               ),
             ],
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          SubmitButton(
-            title: 'Continue as a Guest',
-            onTap: () {
-              Get.offAllNamed(Routes.BottomNAV);
-            },
-            width: size.width.w,
-            height: 40.h,
-            textColor: DarkThemeColor.primary,
           ),
         ],
       ),
