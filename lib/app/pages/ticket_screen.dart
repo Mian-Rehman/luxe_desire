@@ -126,7 +126,7 @@ class _TicketScreenState extends State<TicketScreen> {
                 height: 1.5,
               ),
               Text(
-                "\$$payment",
+                "\$${payment}00",
                 style: const TextStyle(
                     fontSize: 25,
                     color: Colors.white,

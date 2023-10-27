@@ -7,6 +7,7 @@ import 'package:luxe_desires/app/modules/editprofile/views/editprofile_view.dart
 import 'package:luxe_desires/app/modules/help_and_support/view/help_and_support.dart';
 import 'package:luxe_desires/app/modules/order/views/order_view.dart';
 import 'package:luxe_desires/app/modules/userprofile/views/userprofile_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingModel {
   final String text;
@@ -42,7 +43,18 @@ List<SettingModel> settingsList = [
         confirmText: 'Emergency Call',
         desc:
             'In case of an emergency click on Emergency Call below to be connected with Emergency Services',
-        confirm: () => Get.back()),
+        confirm: () async {
+          Get.back();
+          final Uri launchUri = Uri(
+            scheme: 'tel',
+            path: '000',
+          );
+          if (await canLaunchUrl(launchUri)) {
+            await launchUrl(launchUri);
+          } else {
+            debugPrint('Can not launch URL');
+          }
+        }),
   ),
   SettingModel(
     icon: Icons.logout,

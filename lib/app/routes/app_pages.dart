@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:luxe_desires/app/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:luxe_desires/app/modules/authpage/views/tabs/signup_tab.dart';
+
 import '../modules/add_music/bindings/add_music_binding.dart';
 import '../modules/add_music/views/add_music_view.dart';
 import '../modules/authpage/bindings/authpage_binding.dart';
@@ -76,6 +77,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.BottomNAV,
+      transition: Transition.circularReveal,
       page: () => const BottomNavBar(),
     ),
     GetPage(

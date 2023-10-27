@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ import 'package:luxe_desires/app/modules/authpage/controllers/authpage_controlle
 import 'package:luxe_desires/app/widgets/container_widget.dart';
 import 'package:luxe_desires/app/widgets/input_feild.dart';
 import 'package:luxe_desires/app/widgets/submit_button.dart';
+
 import '../../../../constants/theme_controller.dart';
 import '../../../../services/services.dart';
 
@@ -130,6 +132,20 @@ class _SignUpTabState extends State<SignUpTab> {
                       height: 12.h,
                     ),
                     InputField(
+                      labelText: 'Age',
+                      textInputAction: TextInputAction.next,
+                      type: TextInputType.number,
+                      validatior: (value) {
+                        if (value.toString().isEmpty) {
+                          return '';
+                        }
+                      },
+                      inputController: controller.ageController,
+                    ),
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    InputField(
                       labelText: 'Email Address',
                       textInputAction: TextInputAction.next,
                       validatior: (value) {
@@ -213,41 +229,49 @@ class _SignUpTabState extends State<SignUpTab> {
                                       .emailAddressController.text.isNotEmpty &&
                                   controller
                                       .phoneNumberController.text.isNotEmpty &&
-                                  controller
-                                      .passwordController.text.isNotEmpty &&
-                                  controller.passwordConfirmController.text
-                                      .isNotEmpty &&
                                   image != null) {
                                 if (controller.passwordController.text ==
                                     controller.passwordConfirmController.text) {
                                   if (GetUtils.isEmail(
                                       controller.emailAddressController.text)) {
-                                    final String imageUrl = await controller
-                                        .firebaseStorage(image: image!);
-                                    controller.loader();
-                                    // ignore: use_build_context_synchronously
-                                    AuthServices().signUp(
-                                        email: controller
-                                            .emailAddressController.text,
-                                        password: controller
-                                            .passwordConfirmController.text,
-                                        dbName: 'users',
-                                        context: context,
-                                        map: {
-                                          'userName':
-                                              controller.nameController.text,
-                                          'phoneNumber': controller
-                                              .phoneNumberController.text,
-                                          'email': controller
+                                    if (int.parse(
+                                            controller.ageController.text) >=
+                                        18) {
+                                      final String imageUrl = await controller
+                                          .firebaseStorage(image: image!);
+                                      controller.loader();
+                                      // ignore: use_build_context_synchronously
+                                      AuthServices().signUp(
+                                          email: controller
                                               .emailAddressController.text,
-                                          'password': controller
+                                          password: controller
                                               .passwordConfirmController.text,
-                                          'uid': '',
-                                          'profilePic': imageUrl,
-                                          'joinDate': DateFormat()
-                                              .format(DateTime.now())
-                                        });
-                                    controller.sendEmail();
+                                          dbName: 'users',
+                                          context: context,
+                                          map: {
+                                            'userName':
+                                                controller.nameController.text,
+                                            'phoneNumber': controller
+                                                .phoneNumberController.text,
+                                            'age':
+                                                controller.ageController.text,
+                                            'email': controller
+                                                .emailAddressController.text,
+                                            'reward': 0.00,
+                                            'password': controller
+                                                .passwordConfirmController.text,
+                                            'uid': '',
+                                            'profilePic': imageUrl,
+                                            'joinDate': DateFormat()
+                                                .format(DateTime.now())
+                                          });
+                                      controller.sendEmail();
+                                    } else {
+                                      toast(
+                                          message: "You're under 18 years old",
+                                          color: DarkThemeColor.primary,
+                                          title: 'Alert!');
+                                    }
                                   } else {
                                     toast(
                                         message: 'Please enter a Verfied Email',

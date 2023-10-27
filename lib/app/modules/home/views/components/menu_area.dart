@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/modules/eventScreen/views/event_screen_view.dart';
 import 'package:luxe_desires/app/modules/guestlist_page/views/guestlist_view.dart';
 import 'package:luxe_desires/app/modules/menu_screen/menu_screen.dart';
-import 'package:luxe_desires/app/pages/reward_screen.dart';
 import 'package:luxe_desires/app/routes/app_pages.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import '../../../../constants/app_color.dart';
 import '../../../../constants/theme_controller.dart';
-import '../../../userprofile/views/userprofile_view.dart';
 
 class MenuArea extends StatelessWidget {
   const MenuArea({super.key});
@@ -36,7 +35,9 @@ class MenuArea extends StatelessWidget {
                 width: 0.45.sw,
                 height: 155.h,
                 decoration: BoxDecoration(
-                  color: isDark ? Colors.black26 : DarkThemeColor.primary,
+                  // color: isDark
+                  //     ? DarkThemeColor.secondaryBackground
+                  //     : DarkThemeColor.primary,
                   borderRadius: BorderRadius.circular(10),
                   shape: BoxShape.rectangle,
                 ),
@@ -51,7 +52,7 @@ class MenuArea extends StatelessWidget {
                         color: isDark
                             ? DarkThemeColor.primary
                             : DarkThemeColor.alternate,
-                        size: 70,
+                        size: 50,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 15.h, 0, 0),
@@ -72,6 +73,11 @@ class MenuArea extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+                height: size.height * .15,
+                child: const VerticalDivider(
+                  color: Colors.white24,
+                )),
             InkWell(
               splashColor: Colors.transparent,
               focusColor: Colors.transparent,
@@ -84,7 +90,7 @@ class MenuArea extends StatelessWidget {
                 width: 0.45.sw,
                 height: 155.h,
                 decoration: BoxDecoration(
-                  color: isDark ? Colors.black26 : DarkThemeColor.primary,
+                  // color: isDark ? Colors.black26 : DarkThemeColor.primary,
                   borderRadius: BorderRadius.circular(10),
                   shape: BoxShape.rectangle,
                 ),
@@ -99,7 +105,7 @@ class MenuArea extends StatelessWidget {
                         color: isDark
                             ? DarkThemeColor.primary
                             : DarkThemeColor.alternate,
-                        size: 70,
+                        size: 50,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 15.h, 0, 0),
@@ -122,6 +128,19 @@ class MenuArea extends StatelessWidget {
             ),
           ],
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+                width: size.width * .3,
+                child: const Divider(
+                  color: Colors.white24,
+                )),
+            SizedBox(
+                width: size.width * .3,
+                child: const Divider(color: Colors.white24)),
+          ],
+        ),
         const SizedBox(
           height: 10,
         ),
@@ -139,7 +158,7 @@ class MenuArea extends StatelessWidget {
                 width: 0.45.sw,
                 height: 155.h,
                 decoration: BoxDecoration(
-                  color: isDark ? Colors.black26 : DarkThemeColor.primary,
+                  // color: isDark ? Colors.black26 : DarkThemeColor.primary,
                   borderRadius: BorderRadius.circular(10),
                   shape: BoxShape.rectangle,
                 ),
@@ -154,7 +173,7 @@ class MenuArea extends StatelessWidget {
                         color: isDark
                             ? DarkThemeColor.primary
                             : DarkThemeColor.alternate,
-                        size: 70,
+                        size: 50,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 15.h, 0, 0),
@@ -175,6 +194,11 @@ class MenuArea extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+                height: size.height * .15,
+                child: const VerticalDivider(
+                  color: Colors.white24,
+                )),
             InkWell(
               splashColor: Colors.transparent,
               focusColor: Colors.transparent,
@@ -185,7 +209,7 @@ class MenuArea extends StatelessWidget {
                 width: 0.45.sw,
                 height: 155.h,
                 decoration: BoxDecoration(
-                  color: isDark ? Colors.black26 : DarkThemeColor.primary,
+                  // color: isDark ? Colors.black26 : DarkThemeColor.primary,
                   borderRadius: BorderRadius.circular(10),
                   shape: BoxShape.rectangle,
                 ),
@@ -200,7 +224,7 @@ class MenuArea extends StatelessWidget {
                         color: isDark
                             ? DarkThemeColor.primary
                             : DarkThemeColor.alternate,
-                        size: 70,
+                        size: 50,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 15.h, 0, 0),

@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,9 @@ import 'package:luxe_desires/app/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:luxe_desires/app/modules/authpage/views/otp_screen.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server/gmail.dart';
-import '../../../constants/app_color.dart';
 import 'package:random_string/random_string.dart';
+
+import '../../../constants/app_color.dart';
 import '../../../constants/contants.dart';
 import '../../../constants/firebase.dart';
 
@@ -19,6 +21,7 @@ class AuthController extends GetxController {
   final passwordLoginVisibility = false.obs;
   // signup controllers
   final nameController = TextEditingController();
+  final ageController = TextEditingController();
   final emailAddressController = TextEditingController();
   final emailController = TextEditingController();
   final phoneNumberController = TextEditingController();

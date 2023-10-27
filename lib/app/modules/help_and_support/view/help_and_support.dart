@@ -6,6 +6,7 @@ import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/constants/theme_controller.dart';
 import 'package:luxe_desires/app/modules/help_and_support/controllers/help_controller.dart';
+import 'package:luxe_desires/app/modules/help_and_support/view/faqs_screen.dart';
 import 'package:luxe_desires/app/widgets/container_widget.dart';
 import 'package:luxe_desires/app/widgets/input_feild.dart';
 import 'package:luxe_desires/app/widgets/submit_button.dart';
@@ -327,7 +328,10 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
                 width: size.width * .45,
                 context: context,
-                press: () {},
+                press: () => Get.to(() => const FAQ(
+                    title: 'HOW DO I JOIN AS DJ?',
+                    desc:
+                        'Fill out the form and we’ll contact you for more details.')),
                 title: 'HOW DO I JOIN AS DJ?'),
             SizedBox(
               height: size.height * .02,
@@ -335,7 +339,9 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
                 width: size.width * .77,
                 context: context,
-                press: () {},
+                press: () => Get.to(() => const FAQ(
+                    title: 'IF NOT FROM AUSTRALIA, CAN I JOIN?',
+                    desc: 'Yes you can Definitely join.')),
                 title: 'IF NOT FROM AUSTRALIA, CAN I JOIN?'),
             SizedBox(
               height: size.height * .02,
@@ -343,8 +349,80 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
                 width: size.width * .78,
                 context: context,
-                press: () {},
+                press: () => Get.to(() => const FAQ(
+                    title: 'WE OFFER DISCOUNTS AND COUPONS?',
+                    desc: 'Yes! we do.')),
                 title: 'WE OFFER DISCOUNTS AND COUPONS?'),
+            SizedBox(
+              height: size.height * .02,
+            ),
+            faqMethod(
+                width: size.width * .78,
+                context: context,
+                press: () => Get.to(() => const FAQ(
+                    title: 'How Can I Become a DJ Member?',
+                    desc:
+                        "To join as a DJ, simply complete the form, and we'll reach out to you for additional information.")),
+                title: 'How Can I Become a DJ Member?'),
+            SizedBox(
+              height: size.height * .02,
+            ),
+            faqMethod(
+              width: size.width * .78,
+              context: context,
+              press: () => Get.to(() => const FAQ(
+                  title: "Can I Join if I'm Not Located in Australia?",
+                  desc:
+                      "Absolutely! You are welcome to join regardless of your location.")),
+              title: "Can I Join if I'm Not Located in Australia?",
+            ),
+            SizedBox(
+              height: size.height * .02,
+            ),
+            faqMethod(
+              width: size.width * .78,
+              context: context,
+              press: () => Get.to(() => const FAQ(
+                  title: "Do You Provide Discounts and Coupons?",
+                  desc: "Yes, we offer discounts and coupons to our members.")),
+              title: "Do You Provide Discounts and Coupons?",
+            ),
+            SizedBox(
+              height: size.height * .02,
+            ),
+            faqMethod(
+              width: size.width * .78,
+              context: context,
+              press: () => Get.to(() => const FAQ(
+                  title: "What Are the Membership Requirements?",
+                  desc:
+                      "Membership requirements may vary. Typically, you'll need to meet certain criteria, such as having DJ experience or an interest in becoming a DJ. Please contact us for specific details.")),
+              title: "What Are the Membership Requirements?",
+            ),
+            SizedBox(
+              height: size.height * .02,
+            ),
+            faqMethod(
+              width: size.width * .78,
+              context: context,
+              press: () => Get.to(() => const FAQ(
+                  title: "How Do I Stay Updated on DJ Events and News?",
+                  desc:
+                      "We regularly update our members with event information and news through newsletters, email, and our website. Make sure to keep your contact information up-to-date to receive the latest updates")),
+              title: "How Do I Stay Updated on DJ Events\nand News?",
+            ),
+            SizedBox(
+              height: size.height * .02,
+            ),
+            faqMethod(
+              width: size.width * .78,
+              context: context,
+              press: () => Get.to(() => const FAQ(
+                  title: "What If I Have More Questions or Need Support?",
+                  desc:
+                      "- If you have additional questions or require support, please reach out to our customer support team through our contact page. We're here to help you with any inquiries or concerns you may have.")),
+              title: "What If I Have More Questions\nor Need Support?",
+            ),
             SizedBox(
               height: size.height * .05,
             ),
@@ -369,7 +447,7 @@ class HelpAndSupport extends StatelessWidget {
         child: Row(
           children: [
             Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
