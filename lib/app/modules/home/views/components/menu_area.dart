@@ -6,6 +6,7 @@ import 'package:luxe_desires/app/modules/eventScreen/views/event_screen_view.dar
 import 'package:luxe_desires/app/modules/guestlist_page/views/guestlist_view.dart';
 import 'package:luxe_desires/app/modules/menu_screen/menu_screen.dart';
 import 'package:luxe_desires/app/routes/app_pages.dart';
+import 'package:luxe_desires/app/widgets/container_widget.dart';
 
 import '../../../../constants/app_color.dart';
 import '../../../../constants/theme_controller.dart';
@@ -24,12 +25,9 @@ class MenuArea extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(20),
               onTap: () {
-                Get.to(() => const EventScreenView());
+                Get.to(() => EventScreenView());
               },
               child: Container(
                 width: 0.45.sw,
@@ -49,9 +47,7 @@ class MenuArea extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.event,
-                        color: isDark
-                            ? DarkThemeColor.primary
-                            : DarkThemeColor.alternate,
+                        color: isDark ? DarkThemeColor.primary : Colors.black,
                         size: 50,
                       ),
                       Padding(
@@ -63,7 +59,7 @@ class MenuArea extends StatelessWidget {
                                     fontFamily: 'Readex Pro',
                                     color: isDark
                                         ? DarkThemeColor.primary
-                                        : DarkThemeColor.alternate,
+                                        : Colors.black,
                                     fontSize: 18,
                                   ),
                         ),
@@ -75,14 +71,11 @@ class MenuArea extends StatelessWidget {
             ),
             SizedBox(
                 height: size.height * .15,
-                child: const VerticalDivider(
-                  color: Colors.white24,
+                child: VerticalDivider(
+                  color: isDark ? Colors.white24 : Colors.black,
                 )),
             InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(20),
               onTap: () {
                 Get.toNamed(Routes.MUSICLIST);
               },
@@ -102,9 +95,7 @@ class MenuArea extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.music_note_outlined,
-                        color: isDark
-                            ? DarkThemeColor.primary
-                            : DarkThemeColor.alternate,
+                        color: isDark ? DarkThemeColor.primary : Colors.black,
                         size: 50,
                       ),
                       Padding(
@@ -116,7 +107,7 @@ class MenuArea extends StatelessWidget {
                                     fontFamily: 'Readex Pro',
                                     color: isDark
                                         ? DarkThemeColor.primary
-                                        : DarkThemeColor.alternate,
+                                        : Colors.black,
                                     fontSize: 18,
                                   ),
                         ),
@@ -133,12 +124,14 @@ class MenuArea extends StatelessWidget {
           children: [
             SizedBox(
                 width: size.width * .3,
-                child: const Divider(
-                  color: Colors.white24,
+                child: Divider(
+                  color: isDark ? Colors.white24 : Colors.black,
                 )),
             SizedBox(
                 width: size.width * .3,
-                child: const Divider(color: Colors.white24)),
+                child: Divider(
+                  color: isDark ? Colors.white24 : Colors.black,
+                )),
           ],
         ),
         const SizedBox(
@@ -149,10 +142,7 @@ class MenuArea extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(20),
               onTap: () => Get.to(() => const GuestlistScreen()),
               child: Container(
                 width: 0.45.sw,
@@ -170,9 +160,7 @@ class MenuArea extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.person,
-                        color: isDark
-                            ? DarkThemeColor.primary
-                            : DarkThemeColor.alternate,
+                        color: isDark ? DarkThemeColor.primary : Colors.black,
                         size: 50,
                       ),
                       Padding(
@@ -184,7 +172,7 @@ class MenuArea extends StatelessWidget {
                                     fontFamily: 'Readex Pro',
                                     color: isDark
                                         ? DarkThemeColor.primary
-                                        : DarkThemeColor.alternate,
+                                        : Colors.black,
                                     fontSize: 18,
                                   ),
                         ),
@@ -196,14 +184,11 @@ class MenuArea extends StatelessWidget {
             ),
             SizedBox(
                 height: size.height * .15,
-                child: const VerticalDivider(
-                  color: Colors.white24,
+                child: VerticalDivider(
+                  color: isDark ? Colors.white24 : Colors.black,
                 )),
             InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(20),
               onTap: () => Get.to(MenuScreen()),
               child: Container(
                 width: 0.45.sw,
@@ -221,9 +206,7 @@ class MenuArea extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.menu,
-                        color: isDark
-                            ? DarkThemeColor.primary
-                            : DarkThemeColor.alternate,
+                        color: isDark ? DarkThemeColor.primary : Colors.black,
                         size: 50,
                       ),
                       Padding(
@@ -235,7 +218,7 @@ class MenuArea extends StatelessWidget {
                                     fontFamily: 'Readex Pro',
                                     color: isDark
                                         ? DarkThemeColor.primary
-                                        : DarkThemeColor.alternate,
+                                        : Colors.black,
                                     fontSize: 18,
                                   ),
                         ),

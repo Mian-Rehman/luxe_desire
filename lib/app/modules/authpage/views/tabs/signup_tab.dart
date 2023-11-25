@@ -237,9 +237,9 @@ class _SignUpTabState extends State<SignUpTab> {
                                     if (int.parse(
                                             controller.ageController.text) >=
                                         18) {
+                                      controller.loader();
                                       final String imageUrl = await controller
                                           .firebaseStorage(image: image!);
-                                      controller.loader();
                                       // ignore: use_build_context_synchronously
                                       AuthServices().signUp(
                                           email: controller
@@ -257,7 +257,7 @@ class _SignUpTabState extends State<SignUpTab> {
                                                 controller.ageController.text,
                                             'email': controller
                                                 .emailAddressController.text,
-                                            'reward': 0.00,
+                                            'reward': 0.30,
                                             'password': controller
                                                 .passwordConfirmController.text,
                                             'uid': '',

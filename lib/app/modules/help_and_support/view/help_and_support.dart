@@ -6,7 +6,6 @@ import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/constants/theme_controller.dart';
 import 'package:luxe_desires/app/modules/help_and_support/controllers/help_controller.dart';
-import 'package:luxe_desires/app/modules/help_and_support/view/faqs_screen.dart';
 import 'package:luxe_desires/app/widgets/container_widget.dart';
 import 'package:luxe_desires/app/widgets/input_feild.dart';
 import 'package:luxe_desires/app/widgets/submit_button.dart';
@@ -34,7 +33,7 @@ class HelpAndSupport extends StatelessWidget {
         elevation: 4,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(20),
         physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +67,8 @@ class HelpAndSupport extends StatelessWidget {
               ],
             ),
             InputField(
-              labelText: 'First Name',
+              labelText: '',
+              hintText: 'First Name',
               textInputAction: TextInputAction.next,
               validatior: (value) {
                 if (value.toString().isEmpty) {
@@ -103,7 +103,8 @@ class HelpAndSupport extends StatelessWidget {
               ],
             ),
             InputField(
-              labelText: 'Email Address',
+              labelText: '',
+              hintText: 'Email Address',
               textInputAction: TextInputAction.next,
               validatior: (value) {
                 if (value.toString().isEmpty) {
@@ -141,7 +142,8 @@ class HelpAndSupport extends StatelessWidget {
             InputField(
               type: TextInputType.phone,
               textInputAction: TextInputAction.next,
-              labelText: 'Phone Number',
+              hintText: 'Phone Number',
+              labelText: '',
               validatior: (value) {
                 if (value.toString().isEmpty) {
                   return '';
@@ -175,7 +177,8 @@ class HelpAndSupport extends StatelessWidget {
               ],
             ),
             InputField(
-              labelText: 'Message...',
+              labelText: '',
+              hintText: 'Message...',
               textInputAction: TextInputAction.next,
               validatior: (value) {
                 if (value.toString().isEmpty) {
@@ -328,10 +331,8 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
                 width: size.width * .45,
                 context: context,
-                press: () => Get.to(() => const FAQ(
-                    title: 'HOW DO I JOIN AS DJ?',
-                    desc:
-                        'Fill out the form and we’ll contact you for more details.')),
+                subtitle:
+                    'Fill out the form and we’ll contact you for more details.',
                 title: 'HOW DO I JOIN AS DJ?'),
             SizedBox(
               height: size.height * .02,
@@ -339,9 +340,7 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
                 width: size.width * .77,
                 context: context,
-                press: () => Get.to(() => const FAQ(
-                    title: 'IF NOT FROM AUSTRALIA, CAN I JOIN?',
-                    desc: 'Yes you can Definitely join.')),
+                subtitle: 'Yes you can Definitely join.',
                 title: 'IF NOT FROM AUSTRALIA, CAN I JOIN?'),
             SizedBox(
               height: size.height * .02,
@@ -349,9 +348,7 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
                 width: size.width * .78,
                 context: context,
-                press: () => Get.to(() => const FAQ(
-                    title: 'WE OFFER DISCOUNTS AND COUPONS?',
-                    desc: 'Yes! we do.')),
+                subtitle: 'Yes! we do.',
                 title: 'WE OFFER DISCOUNTS AND COUPONS?'),
             SizedBox(
               height: size.height * .02,
@@ -359,10 +356,8 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
                 width: size.width * .78,
                 context: context,
-                press: () => Get.to(() => const FAQ(
-                    title: 'How Can I Become a DJ Member?',
-                    desc:
-                        "To join as a DJ, simply complete the form, and we'll reach out to you for additional information.")),
+                subtitle:
+                    "To join as a DJ, simply complete the form, and we'll reach out to you for additional information.",
                 title: 'How Can I Become a DJ Member?'),
             SizedBox(
               height: size.height * .02,
@@ -370,10 +365,8 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
               width: size.width * .78,
               context: context,
-              press: () => Get.to(() => const FAQ(
-                  title: "Can I Join if I'm Not Located in Australia?",
-                  desc:
-                      "Absolutely! You are welcome to join regardless of your location.")),
+              subtitle:
+                  "Absolutely! You are welcome to join regardless of your location.",
               title: "Can I Join if I'm Not Located in Australia?",
             ),
             SizedBox(
@@ -382,9 +375,7 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
               width: size.width * .78,
               context: context,
-              press: () => Get.to(() => const FAQ(
-                  title: "Do You Provide Discounts and Coupons?",
-                  desc: "Yes, we offer discounts and coupons to our members.")),
+              subtitle: "Yes, we offer discounts and coupons to our members.",
               title: "Do You Provide Discounts and Coupons?",
             ),
             SizedBox(
@@ -393,10 +384,8 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
               width: size.width * .78,
               context: context,
-              press: () => Get.to(() => const FAQ(
-                  title: "What Are the Membership Requirements?",
-                  desc:
-                      "Membership requirements may vary. Typically, you'll need to meet certain criteria, such as having DJ experience or an interest in becoming a DJ. Please contact us for specific details.")),
+              subtitle:
+                  "Membership requirements may vary. Typically, you'll need to meet certain criteria, such as having DJ experience or an interest in becoming a DJ. Please contact us for specific details.",
               title: "What Are the Membership Requirements?",
             ),
             SizedBox(
@@ -405,10 +394,8 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
               width: size.width * .78,
               context: context,
-              press: () => Get.to(() => const FAQ(
-                  title: "How Do I Stay Updated on DJ Events and News?",
-                  desc:
-                      "We regularly update our members with event information and news through newsletters, email, and our website. Make sure to keep your contact information up-to-date to receive the latest updates")),
+              subtitle:
+                  "We regularly update our members with event information and news through newsletters, email, and our website. Make sure to keep your contact information up-to-date to receive the latest updates",
               title: "How Do I Stay Updated on DJ Events\nand News?",
             ),
             SizedBox(
@@ -417,10 +404,8 @@ class HelpAndSupport extends StatelessWidget {
             faqMethod(
               width: size.width * .78,
               context: context,
-              press: () => Get.to(() => const FAQ(
-                  title: "What If I Have More Questions or Need Support?",
-                  desc:
-                      "- If you have additional questions or require support, please reach out to our customer support team through our contact page. We're here to help you with any inquiries or concerns you may have.")),
+              subtitle:
+                  "- If you have additional questions or require support, please reach out to our customer support team through our contact page. We're here to help you with any inquiries or concerns you may have.",
               title: "What If I Have More Questions\nor Need Support?",
             ),
             SizedBox(
@@ -432,46 +417,36 @@ class HelpAndSupport extends StatelessWidget {
     );
   }
 
-  InkWell faqMethod(
+  faqMethod(
       {required BuildContext context,
-      required Function() press,
       required String title,
+      subtitle,
       required double width}) {
-    return InkWell(
-      onTap: press,
-      borderRadius: BorderRadius.circular(20),
-      child: ContainerWidget(
-        width: double.infinity,
-        height: size.height * .07.h,
-        bgColor: DarkThemeColor.secondaryBackground,
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontFamily: 'Readex Pro',
-                      color: DarkThemeColor.alternate,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w300),
-                ),
-                Container(
-                  width: width,
-                  height: 1,
-                  color: Colors.white,
-                ),
-              ],
-            ),
-            const Spacer(),
-            const Icon(
-              Icons.arrow_right,
-              color: Colors.white,
-            )
-          ],
-        ),
+    return ExpansionTile(
+      shape: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(color: DarkThemeColor.primary)),
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+            fontFamily: 'Readex Pro',
+            color: DarkThemeColor.alternate,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w300),
       ),
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text(
+            subtitle,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontFamily: 'Readex Pro',
+                color: DarkThemeColor.alternate,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w300),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -18,8 +18,6 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/jointeam/bindings/jointeam_binding.dart';
 import '../modules/jointeam/views/jointeam_view.dart';
-import '../modules/maindashboard/bindings/maindashboard_binding.dart';
-import '../modules/maindashboard/views/maindashboard_view.dart';
 import '../modules/music_player/bindings/music_player_binding.dart';
 import '../modules/music_player/views/music_player_view.dart';
 import '../modules/musiclist/bindings/musiclist_binding.dart';
@@ -34,6 +32,7 @@ import '../modules/userprofile/bindings/userprofile_binding.dart';
 import '../modules/userprofile/views/userprofile_view.dart';
 import '../modules/users/bindings/users_binding.dart';
 import '../modules/users/views/users_view.dart';
+import '../splash_screen/splash_screen.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -42,10 +41,14 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.ONBOARDING;
+  static const SPLASH = Routes.SPLASH;
   static const BottomNAV = Routes.BottomNAV;
 
   static final routes = [
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => const Splash(),
+    ),
     GetPage(
       name: _Paths.HOME,
       page: () => HomeView(),
@@ -72,18 +75,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.EVENT_SCREEN,
-      page: () => const EventScreenView(),
+      page: () => EventScreenView(),
       binding: EventScreenBinding(),
     ),
     GetPage(
       name: _Paths.BottomNAV,
       transition: Transition.circularReveal,
       page: () => const BottomNavBar(),
-    ),
-    GetPage(
-      name: _Paths.MAINDASHBOARD,
-      page: () => const MaindashboardView(),
-      binding: MaindashboardBinding(),
     ),
     GetPage(
       name: _Paths.MUSICLIST,

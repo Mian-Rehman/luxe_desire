@@ -27,7 +27,7 @@ class BrowseWidget extends StatelessWidget {
         width: size.width * .3.w,
         height: 110.h,
         decoration: BoxDecoration(
-          color: isDark ? Colors.black26 : DarkThemeColor.primary,
+          color: isDark ? Colors.black.withOpacity(.6) : DarkThemeColor.primary,
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [
             BoxShadow(
@@ -54,7 +54,7 @@ class BrowseWidget extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontFamily: 'Readex Pro',
                       color: isDark
-                          ? DarkThemeColor.primary
+                          ? DarkThemeColor.primaryText
                           : DarkThemeColor.alternate,
                       fontSize: 14,
                     ),

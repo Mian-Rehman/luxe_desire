@@ -6,7 +6,7 @@ import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 
 class InputField extends StatelessWidget {
-  final String labelText;
+  final String? labelText;
   final Function validatior;
   final void Function(String?)? saved;
   final void Function(String)? submitted;
@@ -14,6 +14,7 @@ class InputField extends StatelessWidget {
   final Function()? onTap;
   final TextEditingController inputController;
   final TextInputType? type;
+  final String? hintText;
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
   final bool secure;
@@ -30,7 +31,7 @@ class InputField extends StatelessWidget {
 
   const InputField(
       {super.key,
-      required this.labelText,
+      this.labelText,
       required this.validatior,
       required this.inputController,
       this.onTap,
@@ -50,7 +51,8 @@ class InputField extends StatelessWidget {
       this.textInputAction,
       this.isContentPadding = true,
       this.readOnly = false,
-      this.secure = false});
+      this.secure = false,
+      this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -101,10 +103,16 @@ class InputField extends StatelessWidget {
           fillColor: bgColor ?? Colors.white,
           filled: true,
           alignLabelWithHint: true,
+          hintText: hintText,
+          hintStyle: GoogleFonts.lexendDeca(
+            color: const Color(0xFF95A1AC),
+            fontSize: 13.sp,
+            fontWeight: FontWeight.normal,
+          ),
           label: Padding(
             padding: EdgeInsets.only(top: 20.0.h),
             child: Text(
-              labelText,
+              labelText!,
               style: GoogleFonts.lexendDeca(
                 color: const Color(0xFF95A1AC),
                 fontSize: 13.sp,

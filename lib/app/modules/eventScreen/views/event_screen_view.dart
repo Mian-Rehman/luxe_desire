@@ -1,127 +1,169 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
+import 'package:luxe_desires/app/constants/firebase.dart';
 import 'package:luxe_desires/app/constants/theme_controller.dart';
-import 'package:luxe_desires/app/data/models/events.dart';
-import 'package:luxe_desires/app/pages/event_details_screen.dart';
-import '../controllers/event_screen_controller.dart';
+import 'package:luxe_desires/app/modules/eventScreen/controllers/event_screen_controller.dart';
+import 'package:luxe_desires/app/modules/home/controllers/home_controller.dart';
+import 'package:luxe_desires/app/pages/ticket_screen.dart';
+import 'package:luxe_desires/app/widgets/container_widget.dart';
 
 class EventScreenView extends StatelessWidget {
-  const EventScreenView({Key? key}) : super(key: key);
-
+  EventScreenView({Key? key}) : super(key: key);
+  var bookingNo = Random().nextInt(6);
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(EventScreenController());
     return Scaffold(
         appBar: AppBar(
+          foregroundColor: Colors.white,
           title: const Text('Events'),
           centerTitle: true,
           backgroundColor: DarkThemeColor.primary,
         ),
-        body: Obx(() => controller.isLoading.value
-            ? loader
-            : GridView.builder(
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10.w,
-                    mainAxisSpacing: 10.h,
-                    mainAxisExtent: 270.h),
-                itemCount: controller.events.length,
-                itemBuilder: (context, index) {
-                  return EventCard(event: controller.events[index]);
-                },
-              )));
+        body: StreamBuilder(
+            stream: firestore.collection('events').snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    var data = snapshot.data!.docs[index];
+                    return EventCard(
+                      event: data,
+                      bookingId: bookingNo.toString(),
+                    );
+                  },
+                );
+              } else {
+                return loader;
+              }
+            }));
   }
 }
 
 class EventCard extends StatelessWidget {
-  EventCard({
-    super.key,
-    required this.event,
-  });
+  const EventCard({super.key, required this.event, required this.bookingId});
 
-  final Event event;
-  var stars = "4.9";
+  final dynamic event;
+  final String bookingId;
 
   @override
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
     final isDark = themeController.isDark.value;
-    return Bounce(
-      duration: const Duration(milliseconds: 300),
-      onPressed: () {},
-      child: Container(
-        padding: EdgeInsets.all(8.h),
-        decoration: BoxDecoration(
-            color: !isDark
-                ? LightThemeColor.secondaryBackground
-                : DarkThemeColor.secondaryBackground,
-            borderRadius: BorderRadius.circular(12.r)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.r),
-              child: Image.network(
-                event.imageUrl,
-                height: 150.h,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Text(
-              event.title,
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
+    return GetBuilder<EventScreenController>(
+        init: EventScreenController(),
+        builder: (controller) {
+          return Container(
+            padding: EdgeInsets.all(10.h),
+            decoration: BoxDecoration(
+                color: !isDark
+                    ? LightThemeColor.secondaryBackground
+                    : DarkThemeColor.secondaryBackground,
+                borderRadius: BorderRadius.circular(12.r)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.star_rounded,
-                  color: !isDark
-                      ? LightThemeColor.primary
-                      : DarkThemeColor.primary,
-                  size: 24,
-                ),
-                Text(
-                  '$stars Stars',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EventDetailsScreen(
-                                event.imageUrl, event.title, stars)));
-                  },
-                  child: Text(
-                    'View Now',
-                    style: Theme.of(context).textTheme.labelMedium,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.r),
+                  child: Image.network(
+                    event['image'],
+                    height: size.height * .3.h,
+                    width: double.infinity,
+                    fit: BoxFit.fill,
                   ),
                 ),
-                const Icon(
-                  Icons.navigate_next,
-                  color: Colors.black,
-                  size: 24,
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.event_available,
+                      color: Colors.white,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      event['name'],
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                eventMethod(context, Icons.calendar_month, event['desc']),
+                const SizedBox(
+                  height: 5,
+                ),
+                eventMethod(context, Icons.money, event['fee']),
+                const SizedBox(
+                  height: 5,
+                ),
+                eventMethod(context, Icons.calendar_month, event['date']),
+                const SizedBox(
+                  height: 5,
+                ),
+                eventMethod(context, Icons.watch, event['time']),
+                const SizedBox(
+                  height: 20,
+                ),
+                GetBuilder<HomeController>(
+                    init: HomeController(),
+                    builder: (snapshot) {
+                      return Bounce(
+                        duration: const Duration(milliseconds: 300),
+                        onPressed: () => Get.to(() => TicketScreen(
+                              bookingId: bookingId,
+                              userName: snapshot.name,
+                              number: snapshot.phoneNumber,
+                              email: snapshot.email,
+                              image: event['image'],
+                              eventName: event['name'],
+                              desc: event['desc'],
+                              date: event['date'],
+                              fee: event['fee'],
+                              time: event['time'],
+                            )),
+                        child: ContainerWidget(
+                            bgColor: DarkThemeColor.primary,
+                            child: const Text('Book Event')),
+                      );
+                    }),
+                const SizedBox(
+                  height: 10,
                 ),
               ],
             ),
-          ],
+          );
+        });
+  }
+
+  Row eventMethod(BuildContext context, IconData icon, String title) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          color: Colors.white,
         ),
-      ),
+        const SizedBox(
+          width: 10,
+        ),
+        Text(
+          title,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+      ],
     );
   }
 }

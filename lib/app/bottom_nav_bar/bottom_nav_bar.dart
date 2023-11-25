@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
+import 'package:luxe_desires/app/modules/booking_history_screen/booking_history_screen.dart';
 import 'package:luxe_desires/app/modules/home/views/home_view.dart';
 import 'package:luxe_desires/app/modules/jointeam/views/jointeam_view.dart';
 import 'package:luxe_desires/app/modules/setting_screen/settings_sceeen.dart';
 import 'package:luxe_desires/app/pages/reward_screen.dart';
-import 'package:luxe_desires/app/pages/ticket_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -66,7 +66,7 @@ class _BottomNavBarState extends State<BottomNavBar>
   int currentIndex = 0;
   List pages = [
     HomeView(),
-    const TicketScreen(),
+    const BookingHistoryScreen(),
     const RewardScreen(),
     const JointeamView(),
     const SettingsScreen(),

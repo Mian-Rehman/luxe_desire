@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:luxe_desires/app/widgets/submit_button.dart';
 import '../../../constants/app_color.dart';
 import '../../../constants/contants.dart';
+import '../../../constants/theme_controller.dart';
 import '../../../widgets/container_widget.dart';
 import '../../../widgets/input_feild.dart';
 import '../controllers/guest_controller.dart';
@@ -35,6 +36,8 @@ class _GuestlistScreenState extends State<GuestlistScreen> {
     final guestNameController = TextEditingController();
     final bothPackageController = TextEditingController();
     var controller = Get.put(GuestController());
+    final ThemeController themeController = Get.find();
+    final isDark = themeController.isDark.value;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Guest List'),
@@ -123,7 +126,7 @@ class _GuestlistScreenState extends State<GuestlistScreen> {
                       Text(
                         'Birthday',
                         style: GoogleFonts.readexPro(
-                          color: DarkThemeColor.primaryText,
+                          color: isDark ? DarkThemeColor.primary : Colors.black,
                           fontWeight: FontWeight.w400,
                           fontSize: 20.sp,
                         ),
@@ -278,7 +281,7 @@ class _GuestlistScreenState extends State<GuestlistScreen> {
                             ],
                           )),
                       SizedBox(
-                        height: size.height * .01.h,
+                        height: size.height * .02.h,
                       ),
                       InputField(
                         labelText: 'Booth Package',
@@ -291,7 +294,7 @@ class _GuestlistScreenState extends State<GuestlistScreen> {
                         inputController: bothPackageController,
                       ),
                       SizedBox(
-                        height: size.height * .01.h,
+                        height: size.height * .02.h,
                       ),
                       SubmitButton(
                           bgColor: DarkThemeColor.primary,
@@ -301,11 +304,13 @@ class _GuestlistScreenState extends State<GuestlistScreen> {
                                 confirmText: 'OK',
                                 title: 'Thanks',
                                 desc:
-                                
                                     "Thank you for choosing us for your next event and we can't wait to see you and all your friends! We have received your booking and will be in touch shortly to confirm.",
                                 confirm: () => Get.back());
                           })
                     ])),
+            SizedBox(
+              height: size.height * .02.h,
+            ),
           ],
         ),
       ),

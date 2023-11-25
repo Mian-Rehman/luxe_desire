@@ -36,6 +36,11 @@ List<SettingModel> settingsList = [
       text: 'Help and Support',
       press: () => Get.to(() => const HelpAndSupport())),
   SettingModel(
+    icon: Icons.privacy_tip,
+    text: 'Terms and Conditions',
+    press: () async => await launchUrl(Uri.parse('https://luxedesiresent.com')),
+  ),
+  SettingModel(
     icon: Icons.emergency_sharp,
     text: 'Emergency',
     press: () => showBox(

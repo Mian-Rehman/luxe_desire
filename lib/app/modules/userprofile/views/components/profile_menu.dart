@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/theme_controller.dart';
+import 'package:luxe_desires/app/modules/booking_history_screen/booking_history_screen.dart';
 import 'package:luxe_desires/app/modules/userprofile/views/widgets/profile_menu_tile.dart';
 import 'package:luxe_desires/app/pages/reward_screen.dart';
 import 'package:luxe_desires/app/pages/sub_screen.dart';
-import 'package:luxe_desires/app/pages/ticket_screen.dart';
 import 'package:luxe_desires/app/routes/app_pages.dart';
 import 'package:luxe_desires/app/widgets/submit_button.dart';
 
@@ -36,7 +36,7 @@ class ProfileMenu extends StatelessWidget {
         ProfileMenuTile(
           title: 'Tickets',
           onTap: () {
-            Get.to(const TicketScreen());
+            Get.to(const BookingHistoryScreen());
           },
         ),
         ProfileMenuTile(

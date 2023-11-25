@@ -9,10 +9,10 @@ class HomeController extends GetxController {
   var name = '';
   var phoneNumber = '';
   var email = '';
-  var reward = 0;
+  double reward = 0.00;
 
-  // get doc info
-  getDocInfo() async {
+  // get user info
+  getUserInfo() async {
     Future.delayed(const Duration(seconds: 5), () async {
       await firestore
           .collection('users')
@@ -22,6 +22,7 @@ class HomeController extends GetxController {
         name = value.get('userName');
         phoneNumber = value.get('phoneNumber');
         email = value.get('email');
+        reward = value.get('reward');
       });
     });
     update();
@@ -37,14 +38,14 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     getUsers();
-    getDocInfo();
+    getUserInfo();
     super.onReady();
   }
 
   @override
   void onInit() {
     getUsers();
-    getDocInfo();
+    getUserInfo();
     super.onInit();
   }
 }
