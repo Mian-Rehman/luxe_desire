@@ -51,306 +51,285 @@ class _SignUpTabState extends State<SignUpTab> {
     final ThemeController themeController = Get.find();
     final isDark = themeController.isDark.value;
     return Scaffold(
-      body: Container(
-        height: size.height,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: isDark
-                ? [
-                    DarkThemeColor.primary,
-                    DarkThemeColor.secondaryBackground,
-                  ]
-                : [
-                    LightThemeColor.primary,
-                    LightThemeColor.secondaryBackground,
-                  ],
-            stops: const [0, 1],
-            begin: const AlignmentDirectional(0, -1),
-            end: const AlignmentDirectional(0, 1),
-          ),
-        ),
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(top: size.height * .1.h),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                  width: 150,
-                  height: 150,
-                  margin: const EdgeInsets.only(top: 10, bottom: 10),
-                  decoration: const BoxDecoration(shape: BoxShape.circle),
-                  child: image == null
-                      ? const CircleAvatar(
-                          backgroundImage: AssetImage(
-                          'assets/imgs/yellow_logo.png',
-                        ))
-                      : CircleAvatar(
-                          backgroundImage: FileImage(
-                            image!,
-                          ),
-                        )),
-              TextButton(
-                child: Text(
-                  "Add Picture",
-                  style: TextStyle(color: DarkThemeColor.primaryText),
-                ),
-                onPressed: () {
-                  Get.defaultDialog(
-                      title: 'Select Image from',
-                      backgroundColor: DarkThemeColor.primary,
-                      content: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextButton(
-                              onPressed: () => imagePickFromCamera(),
-                              child: const Text('Camera')),
-                          TextButton(
-                              onPressed: () => imagePickFromGallery(),
-                              child: const Text('Gallery')),
-                        ],
-                      ));
-                },
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: size.height * .1.h),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Container(
+                width: 150,
+                height: 150,
+                margin: const EdgeInsets.only(top: 10, bottom: 10),
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                child: image == null
+                    ? const CircleAvatar(
+                        backgroundImage: AssetImage(
+                        'assets/imgs/yellow_logo.png',
+                      ))
+                    : CircleAvatar(
+                        backgroundImage: FileImage(
+                          image!,
+                        ),
+                      )),
+            TextButton(
+              child: Text(
+                "Add Picture",
+                style: TextStyle(color: DarkThemeColor.primaryText),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(44.w, 0, 44.w, 0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    InputField(
-                      labelText: 'Full Name',
+              onPressed: () {
+                Get.defaultDialog(
+                    title: 'Select Image from',
+                    backgroundColor: DarkThemeColor.primary,
+                    content: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                            onPressed: () => imagePickFromCamera(),
+                            child: const Text('Camera')),
+                        TextButton(
+                            onPressed: () => imagePickFromGallery(),
+                            child: const Text('Gallery')),
+                      ],
+                    ));
+              },
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(44.w, 0, 44.w, 0),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  InputField(
+                    labelText: 'Full Name',
+                    textInputAction: TextInputAction.next,
+                    validatior: (value) {
+                      if (value.toString().isEmpty) {
+                        return '';
+                      }
+                    },
+                    inputController: controller.nameController,
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  InputField(
+                    labelText: 'Age',
+                    textInputAction: TextInputAction.next,
+                    type: TextInputType.number,
+                    validatior: (value) {
+                      if (value.toString().isEmpty) {
+                        return '';
+                      }
+                    },
+                    inputController: controller.ageController,
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  InputField(
+                    labelText: 'Email Address',
+                    textInputAction: TextInputAction.next,
+                    validatior: (value) {
+                      if (value.toString().isEmpty) {
+                        return '';
+                      }
+                    },
+                    inputController: controller.emailAddressController,
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  InputField(
+                    labelText: 'Phone Number',
+                    textInputAction: TextInputAction.next,
+                    type: TextInputType.phone,
+                    validatior: (value) {
+                      if (value.toString().isEmpty) {
+                        return '';
+                      }
+                    },
+                    inputController: controller.phoneNumberController,
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  Obx(
+                    () => InputField(
+                      labelText: 'Password',
                       textInputAction: TextInputAction.next,
                       validatior: (value) {
                         if (value.toString().isEmpty) {
                           return '';
                         }
                       },
-                      inputController: controller.nameController,
+                      secure: controller.passwordVisibility.value,
+                      suffix: controller.passwordVisibility.value
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      suffixPress: () {
+                        controller.passwordVisibility.value =
+                            !controller.passwordVisibility.value;
+                      },
+                      inputController: controller.passwordController,
                     ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    InputField(
-                      labelText: 'Age',
-                      textInputAction: TextInputAction.next,
-                      type: TextInputType.number,
+                  ),
+                  SizedBox(
+                    height: 12.h,
+                  ),
+                  Obx(
+                    () => InputField(
+                      labelText: 'Confirm Password',
                       validatior: (value) {
                         if (value.toString().isEmpty) {
                           return '';
                         }
                       },
-                      inputController: controller.ageController,
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    InputField(
-                      labelText: 'Email Address',
-                      textInputAction: TextInputAction.next,
-                      validatior: (value) {
-                        if (value.toString().isEmpty) {
-                          return '';
-                        }
+                      secure: controller.passwordConfirmVisibility.value,
+                      suffix: controller.passwordConfirmVisibility.value
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      suffixPress: () {
+                        controller.passwordConfirmVisibility.value =
+                            !controller.passwordConfirmVisibility.value;
                       },
-                      inputController: controller.emailAddressController,
+                      inputController: controller.passwordConfirmController,
                     ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    InputField(
-                      labelText: 'Phone Number',
-                      textInputAction: TextInputAction.next,
-                      type: TextInputType.phone,
-                      validatior: (value) {
-                        if (value.toString().isEmpty) {
-                          return '';
-                        }
-                      },
-                      inputController: controller.phoneNumberController,
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Obx(
-                      () => InputField(
-                        labelText: 'Password',
-                        textInputAction: TextInputAction.next,
-                        validatior: (value) {
-                          if (value.toString().isEmpty) {
-                            return '';
-                          }
-                        },
-                        secure: controller.passwordVisibility.value,
-                        suffix: controller.passwordVisibility.value
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                        suffixPress: () {
-                          controller.passwordVisibility.value =
-                              !controller.passwordVisibility.value;
-                        },
-                        inputController: controller.passwordController,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Obx(
-                      () => InputField(
-                        labelText: 'Confirm Password',
-                        validatior: (value) {
-                          if (value.toString().isEmpty) {
-                            return '';
-                          }
-                        },
-                        secure: controller.passwordConfirmVisibility.value,
-                        suffix: controller.passwordConfirmVisibility.value
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                        suffixPress: () {
-                          controller.passwordConfirmVisibility.value =
-                              !controller.passwordConfirmVisibility.value;
-                        },
-                        inputController: controller.passwordConfirmController,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 24.h,
-                    ),
-                    Obx(() => controller.loading.value == false
-                        ? SubmitButton(
-                            title: 'Create Account',
-                            onTap: () async {
-                              if (controller.passwordController.text.isNotEmpty &&
-                                  controller.passwordConfirmController.text
-                                      .isNotEmpty &&
-                                  controller.nameController.text.isNotEmpty &&
-                                  controller
-                                      .emailAddressController.text.isNotEmpty &&
-                                  controller
-                                      .phoneNumberController.text.isNotEmpty &&
-                                  image != null) {
-                                if (controller.passwordController.text ==
-                                    controller.passwordConfirmController.text) {
-                                  if (GetUtils.isEmail(
-                                      controller.emailAddressController.text)) {
-                                    if (int.parse(
-                                            controller.ageController.text) >=
-                                        18) {
-                                      controller.loader();
-                                      final String imageUrl = await controller
-                                          .firebaseStorage(image: image!);
-                                      // ignore: use_build_context_synchronously
-                                      AuthServices().signUp(
-                                          email: controller
+                  ),
+                  SizedBox(
+                    height: 24.h,
+                  ),
+                  Obx(() => controller.loading.value == false
+                      ? SubmitButton(
+                          title: 'Create Account',
+                          onTap: () async {
+                            if (controller.passwordController.text.isNotEmpty &&
+                                controller.passwordConfirmController.text
+                                    .isNotEmpty &&
+                                controller.nameController.text.isNotEmpty &&
+                                controller
+                                    .emailAddressController.text.isNotEmpty &&
+                                controller
+                                    .phoneNumberController.text.isNotEmpty &&
+                                image != null) {
+                              if (controller.passwordController.text ==
+                                  controller.passwordConfirmController.text) {
+                                if (GetUtils.isEmail(
+                                    controller.emailAddressController.text)) {
+                                  if (int.parse(
+                                          controller.ageController.text) >=
+                                      18) {
+                                    controller.loader();
+                                    final String imageUrl = await controller
+                                        .firebaseStorage(image: image!);
+                                    // ignore: use_build_context_synchronously
+                                    AuthServices().signUp(
+                                        email: controller
+                                            .emailAddressController.text,
+                                        password: controller
+                                            .passwordConfirmController.text,
+                                        dbName: 'users',
+                                        context: context,
+                                        map: {
+                                          'userName':
+                                              controller.nameController.text,
+                                          'phoneNumber': controller
+                                              .phoneNumberController.text,
+                                          'age': controller.ageController.text,
+                                          'email': controller
                                               .emailAddressController.text,
-                                          password: controller
+                                          'reward': 0.30,
+                                          'password': controller
                                               .passwordConfirmController.text,
-                                          dbName: 'users',
-                                          context: context,
-                                          map: {
-                                            'userName':
-                                                controller.nameController.text,
-                                            'phoneNumber': controller
-                                                .phoneNumberController.text,
-                                            'age':
-                                                controller.ageController.text,
-                                            'email': controller
-                                                .emailAddressController.text,
-                                            'reward': 0.30,
-                                            'password': controller
-                                                .passwordConfirmController.text,
-                                            'uid': '',
-                                            'profilePic': imageUrl,
-                                            'joinDate': DateFormat()
-                                                .format(DateTime.now())
-                                          });
-                                      controller.sendEmail();
-                                    } else {
-                                      toast(
-                                          message: "You're under 18 years old",
-                                          color: DarkThemeColor.primary,
-                                          title: 'Alert!');
-                                    }
+                                          'uid': '',
+                                          'profilePic': imageUrl,
+                                          'joinDate': DateFormat()
+                                              .format(DateTime.now())
+                                        });
+                                    controller.sendEmail();
                                   } else {
                                     toast(
-                                        message: 'Please enter a Verfied Email',
+                                        message: "You're under 18 years old",
                                         color: DarkThemeColor.primary,
                                         title: 'Alert!');
                                   }
                                 } else {
                                   toast(
-                                      message: 'Password not match',
+                                      message: 'Please enter a Verfied Email',
                                       color: DarkThemeColor.primary,
                                       title: 'Alert!');
                                 }
                               } else {
                                 toast(
-                                    message: 'Please fill all required fields',
+                                    message: 'Password not match',
                                     color: DarkThemeColor.primary,
                                     title: 'Alert!');
                               }
-                            },
-                            width: size.width.w,
-                            height: 50.h,
-                            bgColor: DarkThemeColor.primary,
-                          )
-                        : ContainerWidget(
-                            bgColor: DarkThemeColor.primary,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Loading...',
-                                    style: GoogleFonts.readexPro(
-                                      color: !isDark
-                                          ? LightThemeColor.primaryText
-                                          : DarkThemeColor.primaryText,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 16.sp,
-                                    ),
+                            } else {
+                              toast(
+                                  message: 'Please fill all required fields',
+                                  color: DarkThemeColor.primary,
+                                  title: 'Alert!');
+                            }
+                          },
+                          width: size.width.w,
+                          height: 50.h,
+                          bgColor: DarkThemeColor.primary,
+                        )
+                      : ContainerWidget(
+                          bgColor: DarkThemeColor.primary,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Loading...',
+                                  style: GoogleFonts.readexPro(
+                                    color: !isDark
+                                        ? LightThemeColor.primaryText
+                                        : DarkThemeColor.primaryText,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16.sp,
                                   ),
-                                  const Center(
-                                    child: CircularProgressIndicator(
-                                      backgroundColor: Colors.white,
-                                    ),
+                                ),
+                                const Center(
+                                  child: CircularProgressIndicator(
+                                    backgroundColor: Colors.white,
                                   ),
-                                ],
-                              ),
-                            ))),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    'Already have a account?',
-                    style: GoogleFonts.readexPro(
-                      color: DarkThemeColor.primaryText,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16.sp,
-                    ),
-                  ),
-                  SubmitButton(
-                    title: 'Signin',
-                    textColor: DarkThemeColor.primary,
-                    onTap: () => Get.back(),
-                    width: 73.w,
-                    height: 40.h,
-                  ),
+                                ),
+                              ],
+                            ),
+                          ))),
                 ],
               ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 40.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text(
+                  'Already have a account?',
+                  style: GoogleFonts.readexPro(
+                    color: DarkThemeColor.primaryText,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16.sp,
+                  ),
+                ),
+                SubmitButton(
+                  title: 'Signin',
+                  textColor: DarkThemeColor.primary,
+                  onTap: () => Get.back(),
+                  width: 73.w,
+                  height: 40.h,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

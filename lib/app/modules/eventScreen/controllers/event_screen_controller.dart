@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/constants/firebase.dart';
@@ -21,6 +22,8 @@ class EventScreenController extends GetxController {
   }
 
   void increment() => count.value++;
+
+ 
 
   fetchEvents() {
     isLoading.value = true;

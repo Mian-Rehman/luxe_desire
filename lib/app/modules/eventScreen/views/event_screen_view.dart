@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bounce/flutter_bounce.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:luxe_desires/app/constants/app_color.dart';
 import 'package:luxe_desires/app/constants/contants.dart';
 import 'package:luxe_desires/app/constants/firebase.dart';
@@ -58,94 +59,141 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
+    final EventScreenController eventController =
+        Get.put(EventScreenController());
     final isDark = themeController.isDark.value;
     return GetBuilder<EventScreenController>(
         init: EventScreenController(),
         builder: (controller) {
-          return Container(
-            padding: EdgeInsets.all(10.h),
-            decoration: BoxDecoration(
-                color: !isDark
-                    ? LightThemeColor.secondaryBackground
-                    : DarkThemeColor.secondaryBackground,
-                borderRadius: BorderRadius.circular(12.r)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.r),
-                  child: Image.network(
-                    event['image'],
-                    height: size.height * .3.h,
-                    width: double.infinity,
-                    fit: BoxFit.fill,
+          return GetBuilder<HomeController>(
+              init: HomeController(),
+              builder: (snapshot) {
+                return Bounce(
+                  onPressed: () => Get.to(() => TicketScreen(
+                        bookingId: bookingId,
+                        userName: snapshot.name,
+                        number: snapshot.phoneNumber,
+                        email: snapshot.email,
+                        image: event['image'],
+                        eventName: event['name'],
+                        desc: event['desc'],
+                        date: event['date'],
+                        fee: event['fee'],
+                        time: event['time'],
+                      )),
+                  duration: const Duration(seconds: 1),
+                  child: Container(
+                    width: size.width,
+                    height: size.height * .4,
+                    alignment: Alignment.bottomLeft,
+                    padding: EdgeInsets.all(10.h),
+                    margin: EdgeInsets.only(bottom: 20.h),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(event['image']),
+                            fit: BoxFit.fill),
+                        color: !isDark
+                            ? LightThemeColor.secondaryBackground
+                            : DarkThemeColor.secondaryBackground,
+                        borderRadius: BorderRadius.circular(12.r)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: InkWell(
+                            onTap: () =>
+                                eventController.getDate(context: context),
+                            child: Container(
+                              width: 60,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    eventController.selectedDate.value.day
+                                        .toString(),
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    DateFormat.MMMM().format(
+                                        eventController.selectedDate.value),
+                                    style: const TextStyle(
+                                        color: Colors.blueGrey,
+                                        fontSize: 8,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          event['name'],
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          event['desc'],
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          '\$${event['fee']}',
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          event['date'],
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: Colors.white,
+                                  ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          event['time'],
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: Colors.white,
+                                  ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.event_available,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      event['name'],
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                eventMethod(context, Icons.calendar_month, event['desc']),
-                const SizedBox(
-                  height: 5,
-                ),
-                eventMethod(context, Icons.money, event['fee']),
-                const SizedBox(
-                  height: 5,
-                ),
-                eventMethod(context, Icons.calendar_month, event['date']),
-                const SizedBox(
-                  height: 5,
-                ),
-                eventMethod(context, Icons.watch, event['time']),
-                const SizedBox(
-                  height: 20,
-                ),
-                GetBuilder<HomeController>(
-                    init: HomeController(),
-                    builder: (snapshot) {
-                      return Bounce(
-                        duration: const Duration(milliseconds: 300),
-                        onPressed: () => Get.to(() => TicketScreen(
-                              bookingId: bookingId,
-                              userName: snapshot.name,
-                              number: snapshot.phoneNumber,
-                              email: snapshot.email,
-                              image: event['image'],
-                              eventName: event['name'],
-                              desc: event['desc'],
-                              date: event['date'],
-                              fee: event['fee'],
-                              time: event['time'],
-                            )),
-                        child: ContainerWidget(
-                            bgColor: DarkThemeColor.primary,
-                            child: const Text('Book Event')),
-                      );
-                    }),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
-          );
+                );
+              });
         });
   }
 

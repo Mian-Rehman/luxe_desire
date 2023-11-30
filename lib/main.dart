@@ -14,8 +14,8 @@ import 'app/routes/app_pages.dart';
 final ThemeController controller = Get.put(ThemeController());
 void main() async {
   Stripe.publishableKey = publicKey;
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: DarkThemeColor.primary));
+  // SystemChrome.setSystemUIOverlayStyle(
+  //     SystemUiOverlayStyle(statusBarColor: DarkThemeColor.primary));
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

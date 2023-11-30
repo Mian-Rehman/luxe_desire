@@ -33,7 +33,7 @@ class LoginTab extends StatelessWidget {
               'Sign In',
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     fontSize: 19.sp,
-                    color: Colors.black,
+                    color: isDark ? Colors.white : Colors.black,
                   ),
             ),
             SizedBox(

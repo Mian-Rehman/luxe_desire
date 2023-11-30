@@ -73,10 +73,10 @@ class _BottomNavBarState extends State<BottomNavBar>
   ];
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: DarkThemeColor.primary));
+    // SystemChrome.setSystemUIOverlayStyle(
+    //     SystemUiOverlayStyle(statusBarColor: DarkThemeColor.primary));
     return Scaffold(
-        backgroundColor: DarkThemeColor.primaryBackground,
+        // backgroundColor: DarkThemeColor.primaryBackground,
         bottomNavigationBar: BottomNavigationBar(
           elevation: 0,
           currentIndex: currentIndex,

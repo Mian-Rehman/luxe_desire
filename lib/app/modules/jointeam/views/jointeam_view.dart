@@ -34,79 +34,36 @@ class JointeamView extends StatelessWidget {
           centerTitle: true,
           elevation: 4,
         ),
-        body: Container(
-          width: double.infinity,
-          height: size.height.h,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: isDark
-                  ? [
-                      DarkThemeColor.secondaryBackground,
-                      DarkThemeColor.error,
-                      DarkThemeColor.tertiary,
-                    ]
-                  : [
-                      LightThemeColor.primary,
-                      LightThemeColor.error,
-                      LightThemeColor.tertiary,
-                    ],
-              stops: const [0, 0.5, 1],
-              begin: Alignment.topCenter,
-              end: Alignment.center,
-            ),
-          ),
-          child: Container(
-            width: 100.w,
-            height: 100.h,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: isDark
-                    ? [
-                        DarkThemeColor.primaryBackground,
-                        DarkThemeColor.primary,
-                      ]
-                    : [
-                        LightThemeColor.primary,
-                        LightThemeColor.secondaryBackground,
-                      ],
-                stops: const [0, 1],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: StreamBuilder(
-                stream: firestore.collection('team').snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return snapshot.data!.docs.isEmpty
-                        ? teamMethod(isDark, controller, snapshot, snapshot)
-                        : ListView.builder(
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (_, index) {
-                              var data = snapshot.data!.docs[index];
-                              return snapshot.data!.docs.isEmpty
-                                  ? teamMethod(
-                                      isDark, controller, data, snapshot)
-                                  : data['status'] == 'Pending'
-                                      ? Center(
-                                          child: Text(
-                                            'Your request submitted to admin\nPlease wait admin response',
-                                            style: GoogleFonts.readexPro(
-                                              color: DarkThemeColor.primaryText,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14.sp,
-                                            ),
-                                          ),
-                                        )
-                                      : teamMethod(
-                                          isDark, controller, data, snapshot);
-                            });
-                  } else {
-                    return loader;
-                  }
-                }),
-          ),
-        ));
+        body: StreamBuilder(
+            stream: firestore.collection('team').snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return snapshot.data!.docs.isEmpty
+                    ? teamMethod(isDark, controller, snapshot, snapshot)
+                    : ListView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (_, index) {
+                          var data = snapshot.data!.docs[index];
+                          return snapshot.data!.docs.isEmpty
+                              ? teamMethod(isDark, controller, data, snapshot)
+                              : data['status'] == 'Pending'
+                                  ? Center(
+                                      child: Text(
+                                        'Your request submitted to admin\nPlease wait admin response',
+                                        style: GoogleFonts.readexPro(
+                                          color: DarkThemeColor.primaryText,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14.sp,
+                                        ),
+                                      ),
+                                    )
+                                  : teamMethod(
+                                      isDark, controller, data, snapshot);
+                        });
+              } else {
+                return loader;
+              }
+            }));
   }
 
   SingleChildScrollView teamMethod(

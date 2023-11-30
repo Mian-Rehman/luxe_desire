@@ -15,46 +15,26 @@ class AuthpageView extends GetView<AuthController> {
     final isDark = themeController.isDark.value;
     return Scaffold(
       // backgroundColor: Color(0xFF14181B),
-      body: Container(
-        width: double.infinity,
-        height: size.height,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: isDark
-                ? [
-                    DarkThemeColor.primary,
-                    DarkThemeColor.secondaryBackground,
-                  ]
-                : [
-                    LightThemeColor.primary,
-                    LightThemeColor.secondaryBackground,
-                  ],
-            stops: const [0, 1],
-            begin: const AlignmentDirectional(0, -1),
-            end: const AlignmentDirectional(0, 1),
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 150.h, 0, 0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/imgs/black_logo.png',
-                      width: 100.w,
-                      height: 100.h,
-                      fit: BoxFit.cover,
-                    ),
-                  ],
-                ),
-                const LoginTab()
-              ],
-            ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 150.h, 0, 0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/imgs/yellow_logo.png',
+                    width: 100.w,
+                    height: 100.h,
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              ),
+              const LoginTab()
+            ],
           ),
         ),
       ),

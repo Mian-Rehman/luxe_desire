@@ -39,97 +39,55 @@ class HomeView extends StatelessWidget {
     final isDark = themeController.isDark.value;
     return Scaffold(
         body: SafeArea(
-            child: Container(
-      width: double.infinity,
-      height: size.height.h,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: isDark
-              ? [
-                  DarkThemeColor.secondaryBackground,
-                  DarkThemeColor.error,
-                  DarkThemeColor.tertiary,
-                ]
-              : [
-                  LightThemeColor.primary,
-                  LightThemeColor.error,
-                  LightThemeColor.tertiary,
-                ],
-          stops: const [0, 0.5, 1],
-          begin: Alignment.topCenter,
-          end: Alignment.center,
-        ),
-      ),
-      child: Container(
-        width: 100.w,
-        height: 100.h,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: isDark
-                ? [
-                    DarkThemeColor.primaryBackground,
-                    DarkThemeColor.primary,
-                  ]
-                : [
-                    LightThemeColor.primary,
-                    LightThemeColor.secondaryBackground,
-                  ],
-            stops: const [0, 1],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AnimationLimiter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: AnimationConfiguration.toStaggeredList(
-                      duration: const Duration(seconds: 1),
-                      childAnimationBuilder: (widget) => SlideAnimation(
-                            horizontalOffset: -50.0,
-                            child: FadeInAnimation(
-                              child: widget,
-                            ),
-                          ),
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 30, bottom: 30),
-                          width: MediaQuery.sizeOf(context).width,
-                          child: Text(
-                            "Welcome \n to Luxe Desires ",
-                            style: TextStyle(
-                              fontSize: 28,
-                              color: isDark
-                                  ? DarkThemeColor.primaryText
-                                  : Colors.black,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+            child: SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AnimationLimiter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: AnimationConfiguration.toStaggeredList(
+                  duration: const Duration(seconds: 1),
+                  childAnimationBuilder: (widget) => SlideAnimation(
+                        horizontalOffset: -50.0,
+                        child: FadeInAnimation(
+                          child: widget,
                         ),
-                      ]),
-                ),
-              ),
-              Column(
-                children: AnimationConfiguration.toStaggeredList(
-                    duration: const Duration(seconds: 1),
-                    childAnimationBuilder: (widget) => FlipAnimation(
-                          child: ScaleAnimation(
-                            child: widget,
-                          ),
+                      ),
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 30, bottom: 30),
+                      width: MediaQuery.sizeOf(context).width,
+                      child: Text(
+                        "Welcome \n to Luxe Desires ",
+                        style: TextStyle(
+                          fontSize: 28,
+                          color: isDark
+                              ? DarkThemeColor.primaryText
+                              : Colors.black,
                         ),
-                    children: [
-                      const MenuArea(),
-                      const VideoArea(),
-                    ]),
-              ),
-            ],
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ]),
+            ),
           ),
-        ),
+          Column(
+            children: AnimationConfiguration.toStaggeredList(
+                duration: const Duration(seconds: 1),
+                childAnimationBuilder: (widget) => FlipAnimation(
+                      child: ScaleAnimation(
+                        child: widget,
+                      ),
+                    ),
+                children: [
+                  const MenuArea(),
+                  const VideoArea(),
+                ]),
+          ),
+        ],
       ),
     )));
   }
